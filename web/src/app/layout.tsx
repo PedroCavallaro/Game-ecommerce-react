@@ -16,11 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <head>
-        <title>Home </title>
-      </head>
+      
       <body className={inter.className}>
-      {/* <RightMenu/> */}
+        <RightMenu/>
         <Nav/>
         {children}
         

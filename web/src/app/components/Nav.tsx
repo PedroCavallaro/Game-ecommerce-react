@@ -1,9 +1,18 @@
+"use client"
 import{ AlignJustify, Heart } from "lucide-react"
+import RightMenu from "./RightMenu"
 
 
 export default function Nav() {
+    function showMenu(){
+        const menu: Element | null = document.querySelector("#menu")
+        menu?.classList.toggle("show")
+    }
     return (
+        
+        
         <nav className="bg-gray-200 h-11"> 
+    
             <div className="flex justify-between p-2 text-black">
             <div>
                 <a href="./">
@@ -18,7 +27,7 @@ export default function Nav() {
                
                 <div className=" cursor-pointer flex items-center justify-center gap-10 ">
                     <Heart/>
-                    <AlignJustify className="menu"/>
+                    <AlignJustify onClick={showMenu} className=""/>
                 </div>
             </ul>  
             </div>

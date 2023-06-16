@@ -1,18 +1,18 @@
-'use client'
-import Image from 'next/image'
+"use client"
 import Hero from './components/Hero'
-import Card from './components/Card'
 
-
+import { lazy } from 'react'
+import ProductSection from './components/ProductSection'
+// const ProductSection = lazy(()=> import("./components/ProductSection"))
 
 export default function Home() {
-	const menuButton = document.querySelector(".menu")
-	
 	return (
     <main className="flex flex-col h-[70rem]">
+        
         <Hero/>
 		<div className='flex justify-center overflow-hidden'>
-			<Card/>	
+
+           <ProductSection/>  
 		</div>
     </main>
   )
