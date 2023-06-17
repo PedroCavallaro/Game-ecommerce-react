@@ -4,10 +4,6 @@ import RightMenu from "./RightMenu"
 
 
 export default function Nav() {
-    function showMenu(){
-        const menu: Element | null = document.querySelector("#menu")
-        menu?.classList.toggle("show")
-    }
     return (
         
         
@@ -27,7 +23,11 @@ export default function Nav() {
                
                 <div className=" cursor-pointer flex items-center justify-center gap-10 ">
                     <Heart/>
-                    <AlignJustify onClick={showMenu} className=""/>
+                    <AlignJustify onClick={()=>{
+                        const menu: Element | null = document.querySelector("#menu")
+                        menu?.classList.toggle("show")
+                    }} 
+                    className=""/>
                 </div>
             </ul>  
             </div>

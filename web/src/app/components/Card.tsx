@@ -3,6 +3,7 @@ import { ShoppingCart, ArrowRight} from 'lucide-react';
 import Link from 'next/link';
 
 export interface Product{
+    id:string
     name: string,
     desc: string,
     value: number,
@@ -30,10 +31,10 @@ export function Card(product: Product) {
                     <div className='flex justify-between p-2'>
                         <div>
                             <h3 className='price'>Valor</h3>
-                            <h3 className='price unity'>{product.value}</h3>
+                            <h3 className='price unity'>R$ {product.value}</h3>
                         </div>
                         <label>
-                            <Link href="./">
+                            <Link href={`./ProductPage?id=${product.id}`}>
                                 <ArrowRight className='relative -bottom-4'/>
                             </Link>
                             

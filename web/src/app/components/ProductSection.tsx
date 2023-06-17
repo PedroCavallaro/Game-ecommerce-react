@@ -19,7 +19,7 @@ export default function ProductSection(){
             {
                 products.map((e: any) =>{
                     return (
-                        <Card key={e.name} name={e.name} desc={e.desc} value={e.value} coverUrl={e.coverUrl}/>
+                        <Card id={e.id} key={e.name} name={e.name} desc={e.desc} value={e.value} coverUrl={e.coverUrl}/>
                     )
                 })
             }
