@@ -1,4 +1,4 @@
-import gow from "../../assets/gow.jpeg"
+import gow from "../../../public/assets/gow.jpeg"
 import Image from 'next/image'
 
 

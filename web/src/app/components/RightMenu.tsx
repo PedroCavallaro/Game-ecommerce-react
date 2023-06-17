@@ -1,9 +1,10 @@
 "use client"
 import { ChevronRight, UserCircle, ShoppingBag, ShoppingCart, LogOut  } from 'lucide-react';
 
+
 export default function RightMenu() {
     return (
-        <section id="menu" className="flex h-[80rem] w-64 absolute right-0 bg-gray-200 overflow-hidden">
+        <section id="menu" className="flex h-screen w-64 absolute right-0 bg-gray-200 overflow-hidden z-40">
             <div className='flex flex-col w-[100%]'>
                 <ChevronRight onClick={()=>{
                     const menu: Element | null = document.querySelector("#menu")
@@ -17,7 +18,7 @@ export default function RightMenu() {
                 </div>
                 <div className='border-t-2 border-b-2 border-black flex p-1 mt-2 gap-3 cursor-pointer hover:border-gray-500'>
                     <ShoppingCart color='#000000'/>
-                    <p className='text-black'>Carrinho</p>
+                    <a href="./UserPage/Cart" className='text-black'>Carrinho</a>
                 </div>
                 <div className='border-t-2 border-b-2 border-black flex p-1 mt-2 gap-3 cursor-pointer hover:border-gray-500'>
                     <ShoppingBag color='#000000'/>

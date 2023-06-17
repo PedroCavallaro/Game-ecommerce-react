@@ -11,7 +11,7 @@ export default function Nav() {
     
             <div className="flex justify-between p-2 text-black">
             <div>
-                <a href="./">
+                <a href="./../">
                     <h1 className="flex gap-1 hover:text-gray-600">
                         The Boys <p className="mt-2"> game store</p>
                     </h1>
