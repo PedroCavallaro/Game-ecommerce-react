@@ -1,5 +1,4 @@
 "use client"
-import Image from 'next/image'
 import ProductInfo from './components/ProductInfo'
 import { useState, useMemo, useEffect, cache } from 'react'
 import { Product } from '../components/Card'
@@ -15,10 +14,10 @@ export default function ProductPage() {
   
     const memo = useMemo(async ()=>{
       const url = new URLSearchParams(window.location.search)
-    await api.get(`./products/${url.get("product")}`)
-    .then(function (res){
-      setProducts(res.data)
-    })
+      await api.get(`./products/${url.get("product")}`)
+      .then(function (res){
+        setProducts(res.data)
+      })
   }, [])
 
 

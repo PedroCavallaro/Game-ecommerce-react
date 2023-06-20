@@ -1,8 +1,15 @@
+"use client"
 import{ AlignJustify, Heart, ShoppingCart , UserCircle} from "lucide-react"
-import Link from "next/link"
-
+import { useEffect, useState } from "react"
 
 export default function Nav() {
+
+    const [isAuth, setAuth] = useState<string>()
+
+    useEffect(()=>{
+        setAuth(document.cookie)
+    }, [])
+
     return (
         
         
@@ -24,10 +31,10 @@ export default function Nav() {
                     <a href="./">
                         <Heart/>
                     </a>
-                    <a href="./UserPage/Cart">
+                    <a href="./Cart">
                         <ShoppingCart/>
                     </a>
-                    <a href="./UserPage/UserData">
+                    <a href={isAuth? "./UserData" : "./Login"}>
                         <UserCircle/>
                     </a>
                 </div>

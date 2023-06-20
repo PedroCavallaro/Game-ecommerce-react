@@ -17,8 +17,7 @@ export default function LoginForm() {
                 const d = new Date();
                 console.log(response)
                 document.cookie = `token=${response}; expires=${d.setTime(d.getTime() + 3600)}`
-                //@ts-ignore
-                document.querySelector("#enter")!.href = "./"
+                
             })    
         }
 
@@ -33,10 +32,10 @@ export default function LoginForm() {
                 <p>Senha</p>
                 <input type="password" id="password" name="password" className="bg-black h-12 w-[16rem] text-white"  />
             </label> 
-            <a href="" id="enter">
+            <a href="./" id="enter">
                 <input type="button" value="Entrar" onClick={GetInfo} className="bg-white text-black w-[16rem] h-12 cursor-pointer"/>
             </a>
-            <a href="./Auth/Register" className="bg-white text-black w-[16rem] h-12 flex justify-center cursor-pointer">
+            <a href="./Register" className="bg-white text-black w-[16rem] h-12 flex justify-center cursor-pointer">
                 <input type="button" value="Cadastre-se" />
             </a>
         </div>

@@ -25,6 +25,7 @@ export async function userRoutes(app: FastifyInstance) {
                 
            },
            select: {
+                id:true,
                 Buys: {
                     select:{
                         totalAmount: true,
@@ -53,15 +54,23 @@ export async function userRoutes(app: FastifyInstance) {
             name: z.string(), 
             password: z.string()   
         })   
-        const {name, password} = schema.parse(req.params)
+        const {name, password} = schema.parse(req.body)
         
-        const user = await prisma.user.create({
-            data:{
-                name,
-                password
+        const userAlreadyRegistered = await prisma.user.findUniqueOrThrow({
+            where:{
+                id: name
             }
         })
-        return user
+        // console.log(userAlreadyRegistered)
+        // if(!userAlreadyRegistered){
+            const user = await prisma.user.create({
+                data:{
+                    name,
+                    password
+                }
+            })
+            return user
+        // }
     })
     
 }

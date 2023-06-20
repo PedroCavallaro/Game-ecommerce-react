@@ -18,6 +18,12 @@ export default function LeftMenu() {
         color: "black",
     },
     {
+        id: "WishList",
+        tittle: "Lista de desejos",
+        bgColor: "white",
+        color: "black"
+    },
+    {
         id: "Buys",
         tittle: "Minhas Compras",
         bgColor: "white",

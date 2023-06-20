@@ -3,7 +3,6 @@ import { Inter } from 'next/font/google'
 
 import { cookies } from 'next/headers'
 import Nav from './components/Nav'
-import Login from './components/Login'
 import Home from './page'
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,7 +16,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-
+  
   const isAuth = cookies().has("token")
   
    
@@ -26,8 +25,10 @@ export default function RootLayout({
         <html lang="pt-br">
           
           <body className={inter.className}>
+            
             <Nav/>
-            {isAuth ? children : <Login/>}
+            {/* {isAuth ? <Nav/> : ""} */}
+            {children}
             </body>
         </html>
       )
