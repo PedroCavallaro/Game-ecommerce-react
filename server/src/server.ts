@@ -1,6 +1,7 @@
 import fastify from "fastify";
 import Cors from "@fastify/cors";
 import { productRoutes } from "./routes/products";
+import { userRoutes } from "./routes/user";
 
 const app = fastify()
 
@@ -15,3 +16,4 @@ app.listen({
 })
 
 app.register(productRoutes)
+app.register(userRoutes)

@@ -7,13 +7,13 @@ import { api } from '../lib/api'
 
 
 
+
 export default function ProductPage() {    
     const [product, setProducts] = useState<Product[]>([])
    
     
   
     const memo = useMemo(async ()=>{
-      // const id = JSON.parse(localStorage.getItem("id") || "{}")
       const url = new URLSearchParams(window.location.search)
     await api.get(`./products/${url.get("product")}`)
     .then(function (res){

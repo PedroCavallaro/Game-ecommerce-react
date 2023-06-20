@@ -44,6 +44,7 @@ export async function productRoutes(app: FastifyInstance) {
             },
             where:{
                 id,
+                
             }
         })
 

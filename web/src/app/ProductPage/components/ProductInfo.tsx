@@ -3,7 +3,7 @@ import { api } from "@/app/lib/api"
 import Image from 'next/image'
 import { useState, useMemo } from 'react'
 import { Product } from "@/app/components/Card"
-import {ShoppingBag, ShoppingCart} from "lucide-react"
+import {Heart, ShoppingBag, ShoppingCart} from "lucide-react"
 
 
 export default function ProductInfo(product: Product) {            
@@ -17,12 +17,17 @@ export default function ProductInfo(product: Product) {
                         alt=""/>
                     </div>
                     <div className="w-[50rem] bg-white h-[35rem]">
-                        <div className="flex flex-col justify-evenly h-[30rem] ml-5 gap-20">
+                        <div className="flex flex-col justify-evenly h-[30rem] ml-5 gap-18">
                             <div className="flex flex-col gap-5">
                                 <h1 className="text-black text-[3rem]">{product.name}</h1>
                                 <p className="text-black text-lg" >R$ { product.value }</p>
                             </div>
+                            <div className="flex flex-col gap-8">
+                                <button>
+                                        <Heart color="#000"/>
+                                </button>
                             <p className="text-black text-lg">{product.desc}</p>
+                            </div>
                             <div className="flex gap-8">
                                 <label htmlFor="" 
                                 className="bg-black rounded-full flex justify-center items-center gap-3 text-white w-32 h-12

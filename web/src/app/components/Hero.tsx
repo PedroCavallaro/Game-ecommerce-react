@@ -5,7 +5,7 @@ import Image from 'next/image'
 export default function Hero() {
 
     return(
-        <div className="m-0 flex justify-center items-center overflow-hidden h-[30rem] gap-5">
+        <div className="m-0 flex justify-center items-center  h-[30rem] gap-5">
             <div className="flex justify-center items-center">
                 <Image  
                 className="w-[40rem] h-[25rem] object-cover hover:scale-[1.03] transition"

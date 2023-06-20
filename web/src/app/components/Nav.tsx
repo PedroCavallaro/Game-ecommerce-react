@@ -1,6 +1,5 @@
-"use client"
-import{ AlignJustify, Heart } from "lucide-react"
-import RightMenu from "./RightMenu"
+import{ AlignJustify, Heart, ShoppingCart , UserCircle} from "lucide-react"
+import Link from "next/link"
 
 
 export default function Nav() {
@@ -19,15 +18,18 @@ export default function Nav() {
             </div>
             <ul className=" flex flex-row gap-10 items-center text-sm text-black">
                 <a href="./Games" className="hover:text-gray-400">Jogos</a>
-                <a href="" className="hover:text-gray-400">Alugar</a>
+                <a href="" className="hover:text-gray-400">Sobre</a>
                
                 <div className=" cursor-pointer flex items-center justify-center gap-10 ">
-                    <Heart/>
-                    <AlignJustify onClick={()=>{
-                        const menu: Element | null = document.querySelector("#menu")
-                        menu?.classList.toggle("show")
-                    }} 
-                    className=""/>
+                    <a href="./">
+                        <Heart/>
+                    </a>
+                    <a href="./UserPage/Cart">
+                        <ShoppingCart/>
+                    </a>
+                    <a href="./UserPage/UserData">
+                        <UserCircle/>
+                    </a>
                 </div>
             </ul>  
             </div>

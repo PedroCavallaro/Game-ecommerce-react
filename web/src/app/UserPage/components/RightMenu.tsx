@@ -3,13 +3,14 @@ import { Product } from "@/app/components/Card";
 import { Button } from "./Button";
 import InfoCard from "./InfoCard";
 
+
 export default function RightMenu() {
     let arrProducts: Product[] = []
     arrProducts = JSON.parse(localStorage.getItem("cart") || "{}")
     return (
         <div className="bg-white w-[50rem] relative " >
             
-                {
+            {
                     arrProducts.map((product) =>{
                         return(
                             <div  key={0} className="shadow">

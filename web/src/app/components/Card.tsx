@@ -50,12 +50,12 @@ export function Card(product: Product) {
     
     return(
         <div className='bg-white text-black flex flex-col gap-3 mt-5 w-60'>
-               <div className='flex justify-center items-center flex-col gap-2 '>
+               <div className='flex justify-center items-center flex-col gap-2 h-30 overflow-hidden '>
                     <Image src={`/assets/${product.coverUrl}`}
                         width={500}
                         height={234}
                         alt={product.coverUrl} 
-                        className='h-52 w-56 object-cover p-1 mt-1 rounded-[0.5rem]'
+                        className='h-52 w-56 object-cover p-1 mt-1 rounded-[0.5rem] '
                         />
                         <div>
                             <h2>{product.name}</h2>

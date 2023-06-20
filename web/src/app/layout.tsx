@@ -1,7 +1,10 @@
-import Nav from './components/Nav'
 import './globals.css'
 import { Inter } from 'next/font/google'
-import RightMenu from './components/RightMenu'
+
+import { cookies } from 'next/headers'
+import Nav from './components/Nav'
+import Login from './components/Login'
+import Home from './page'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -14,15 +17,18 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  return (
-    <html lang="pt-br">
-      
-      <body className={inter.className}>
-        <RightMenu/>
-        <Nav/>
-        {children}
-        
-        </body>
-    </html>
-  )
+
+  const isAuth = cookies().has("token")
+  
+   
+
+      return (
+        <html lang="pt-br">
+          
+          <body className={inter.className}>
+            <Nav/>
+            {isAuth ? children : <Login/>}
+            </body>
+        </html>
+      )
 }

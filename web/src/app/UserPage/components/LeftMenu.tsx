@@ -39,12 +39,15 @@ export default function LeftMenu() {
         }
     })
     return(
-        <div className="w-3/12  bg-white flex flex-col gap-10 overflow-hidden">
+        <div className="w-80  bg-white flex flex-col gap-10 overflow-hidden">
             {
                 arrInfo.map((button) =>{
                     return (
                         
-                        <Button key={0} tittle={button.tittle} bgColor={button.bgColor} color={button.color}/>
+                        <Button key={0} id={button.id}
+                         tittle={button.tittle} 
+                         bgColor={button.bgColor} 
+                         color={button.color}/>
                     )
                 })
             }

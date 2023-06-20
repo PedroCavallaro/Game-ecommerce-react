@@ -15,24 +15,8 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
-#menu{
-  display:none;
-}
-#menu.show{
-  display:flex;
-  animation: showCart 0.8s;
- 
-}
-@keyframes showCart {
-  0%{
-      right: -20rem;
-  }
-  100%{
-      right: 0;
-  }
-}
+
 body {
-  overflow-x:hidden;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,

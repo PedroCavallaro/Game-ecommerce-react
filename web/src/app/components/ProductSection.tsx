@@ -8,7 +8,7 @@ export default function ProductSection(){
                    
     const memo = useMemo(async ()=>{
         await api.get("./products")
-        .then(function (res){
+        .then(function (res:any){
                 setProducts(res.data)
         })
     }, [])
