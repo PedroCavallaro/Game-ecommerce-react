@@ -11,20 +11,23 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(uuid())
+  id       String     @id @default(uuid())
   name     String
   password String
   Buys     Buys[]
+  wishList wishList[]
 }
 
 model Product {
-  id           String         @id @default(uuid())
-  name         String
-  amount       Int
-  value        Float
-  desc         String
-  mediaProduct mediaProduct[]
-  BuyItens     BuyItens[]
+  id               String             @id @default(uuid())
+  name             String
+  amount           Int
+  value            Float
+  desc             String
+  mediaProduct     mediaProduct[]
+  BuyItens         BuyItens[]
+  ProductAndGender ProductAndGender[]
+  wishList         wishList[]
 }
 
 model Buys {
@@ -49,4 +52,26 @@ model BuyItens {
   buys    Buys    @relation(fields: [buyId], references: [id])
   prodId  String
   buyId   String
+}
+
+model Gender {
+  id               String             @id @default(uuid())
+  desc             String
+  ProductAndGender ProductAndGender[]
+}
+
+model ProductAndGender {
+  id       String  @id @default(uuid())
+  product  Product @relation(fields: [prodId], references: [id])
+  gender   Gender  @relation(fields: [genderId], references: [id])
+  genderId String
+  prodId   String
+}
+
+model wishList {
+  id        String  @id @default(uuid())
+  user      User    @relation(fields: [userId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
+  userId    String
+  productId String
 }

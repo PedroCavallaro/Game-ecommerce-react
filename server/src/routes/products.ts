@@ -3,8 +3,6 @@ import { prisma } from "../lib/prisma";
 import { z } from "zod"
 
 export async function productRoutes(app: FastifyInstance) {
-    
-
     app.get("/products", async ()=>{
         const products = await prisma.product.findMany({
             include:{
@@ -12,9 +10,10 @@ export async function productRoutes(app: FastifyInstance) {
                     select:{
                         fileName: true
                     }
-                }
+                },
             }
         })
+        
 
         return products.map((product)=>{
             return{
@@ -27,6 +26,26 @@ export async function productRoutes(app: FastifyInstance) {
                 })
             }
         })
+})
+app.get("/productsT", async ()=>{
+    const products = await prisma.productAndGender.findMany({
+        select:{
+                    
+            product:{
+                select:{
+                    name: true,
+                    desc:true,
+                    value:true
+                }
+            },
+            gender:{
+                select:{
+                    desc:true
+                }
+            }
+        }
+    })
+    return products
 })
     app.get("/products/:id", async (req)=>{
         const params = z.object({

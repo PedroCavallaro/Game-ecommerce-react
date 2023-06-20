@@ -13,8 +13,8 @@ export default function RegisterForm() {
 
         if(name && password){
             await api.post("/user", {
-                name: formData.get("name"),
-                password: formData.get("password")
+                name,
+                password
             })
         }
         router.push("/")

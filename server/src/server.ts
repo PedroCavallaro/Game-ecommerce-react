@@ -2,8 +2,12 @@ import fastify from "fastify";
 import Cors from "@fastify/cors";
 import { productRoutes } from "./routes/products";
 import { userRoutes } from "./routes/user";
+import { wishListRoutes } from "./routes/wishList";
+import { genderRoutes } from "./routes/gender";
 
-const app = fastify()
+const app = fastify({
+    logger: true
+})
 
 app.register(Cors, {
     origin: true    
@@ -17,3 +21,5 @@ app.listen({
 
 app.register(productRoutes)
 app.register(userRoutes)
+app.register(wishListRoutes)
+app.register(genderRoutes)

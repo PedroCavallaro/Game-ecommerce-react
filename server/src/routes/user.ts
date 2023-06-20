@@ -56,20 +56,19 @@ export async function userRoutes(app: FastifyInstance) {
         })   
         const {name, password} = schema.parse(req.body)
         
-        const userAlreadyRegistered = await prisma.user.findUniqueOrThrow({
+        const userAlreadyRegistered = await prisma.user.findMany({
             where:{
-                id: name
+                name
             }
         })
-        // console.log(userAlreadyRegistered)
         // if(!userAlreadyRegistered){
-            const user = await prisma.user.create({
-                data:{
-                    name,
-                    password
-                }
-            })
-            return user
+        const user = await prisma.user.create({
+            data:{
+                name,
+                password
+            }
+        })
+        return user
         // }
     })
     

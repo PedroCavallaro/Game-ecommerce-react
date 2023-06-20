@@ -1,11 +1,10 @@
-/*
-  Warnings:
+-- CreateTable
+CREATE TABLE "User" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "name" TEXT NOT NULL,
+    "password" TEXT NOT NULL
+);
 
-  - The primary key for the `User` table will be changed. If it partially fails, the table could be left without primary key constraint.
-  - Added the required column `name` to the `User` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `password` to the `User` table without a default value. This is not possible if the table is not empty.
-
-*/
 -- CreateTable
 CREATE TABLE "Product" (
     "id" TEXT NOT NULL PRIMARY KEY,
@@ -41,15 +40,26 @@ CREATE TABLE "BuyItens" (
     CONSTRAINT "BuyItens_buyId_fkey" FOREIGN KEY ("buyId") REFERENCES "Buys" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
--- RedefineTables
-PRAGMA foreign_keys=OFF;
-CREATE TABLE "new_User" (
+-- CreateTable
+CREATE TABLE "Gender" (
     "id" TEXT NOT NULL PRIMARY KEY,
-    "name" TEXT NOT NULL,
-    "password" TEXT NOT NULL
+    "desc" TEXT NOT NULL
 );
-INSERT INTO "new_User" ("id") SELECT "id" FROM "User";
-DROP TABLE "User";
-ALTER TABLE "new_User" RENAME TO "User";
-PRAGMA foreign_key_check;
-PRAGMA foreign_keys=ON;
+
+-- CreateTable
+CREATE TABLE "ProductAndGender" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "genderId" TEXT NOT NULL,
+    "prodId" TEXT NOT NULL,
+    CONSTRAINT "ProductAndGender_prodId_fkey" FOREIGN KEY ("prodId") REFERENCES "Product" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "ProductAndGender_genderId_fkey" FOREIGN KEY ("genderId") REFERENCES "Gender" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "wishList" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "userId" TEXT NOT NULL,
+    "productId" TEXT NOT NULL,
+    CONSTRAINT "wishList_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "wishList_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);

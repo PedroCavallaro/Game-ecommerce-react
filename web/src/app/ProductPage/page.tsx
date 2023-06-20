@@ -1,6 +1,6 @@
 "use client"
 import ProductInfo from './components/ProductInfo'
-import { useState, useMemo, useEffect, cache } from 'react'
+import { useState, useMemo, useEffect} from 'react'
 import { Product } from '../components/Card'
 import { api } from '../lib/api'
 
