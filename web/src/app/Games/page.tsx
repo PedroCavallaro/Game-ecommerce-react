@@ -1,5 +1,5 @@
 "use client"
-import {useEffect, useState} from "react"
+import {useEffect, useMemo, useState} from "react"
 import { api } from "../lib/api"
 
 interface Gender{
@@ -13,18 +13,18 @@ interface ProductInfo{
     gender: Gender,
 
 }
-const getProductInfo = async ()=>{
-    await api.get("/product")
-}
+const getProductInfo = async () =>{
+    const response = await api.get("/genders")
+    
+    const { data } = response
+    return data
+ }
 export default function Games() {
-    const [genders, setGenders] = useState<ProductInfo[]>([])
-
-    useEffect(()=>{
-        
-    }, [])
+ 
     return(
-            <div>
-                <p>oi</p>
-            </div>
+        <div>
+          
+        </div>
+       
     )
 }

@@ -27,7 +27,7 @@ export async function productRoutes(app: FastifyInstance) {
             }
         })
 })
-app.get("/productsT", async ()=>{
+app.get("/productsAllInfo", async ()=>{
     const products = await prisma.productAndGender.findMany({
         select:{
                     
@@ -35,7 +35,12 @@ app.get("/productsT", async ()=>{
                 select:{
                     name: true,
                     desc:true,
-                    value:true
+                    value:true,
+                    mediaProduct:{
+                        select:{
+                            fileName:true
+                        }
+                    },
                 }
             },
             gender:{

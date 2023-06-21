@@ -13,6 +13,21 @@ export async function wishListRoutes(app: FastifyInstance) {
         const products = await prisma.wishList.findMany({
             where: {
                 userId: id
+            },
+            select:{
+                product:{
+                    select:{
+                        id:true,
+                        name:true,
+                        value: true,
+                        mediaProduct:{
+                            select:{
+                                fileName:true
+                            }
+                        }
+                        
+                    }
+                }
             }
         })
 

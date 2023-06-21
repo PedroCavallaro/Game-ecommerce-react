@@ -9,14 +9,16 @@ import { api } from '../lib/api'
 
 export default function ProductPage() {    
     const [product, setProducts] = useState<Product[]>([])
-   
     
-  
     const memo = useMemo(async ()=>{
-      const url = new URLSearchParams(window.location.search)
-      await api.get(`./products/${url.get("product")}`)
-      .then(function (res){
-        setProducts(res.data)
+      let idProduct = localStorage.getItem('id') as string
+  
+      if(idProduct){
+        localStorage.removeItem("id")
+      }
+      await api.get(`products/${idProduct}`)
+      .then(function(response){
+        setProducts(response.data)
       })
   }, [])
 

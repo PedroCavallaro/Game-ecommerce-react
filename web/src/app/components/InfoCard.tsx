@@ -19,10 +19,10 @@ return(
             </div>
         
          <div className="flex flex-col gap-3 ml-20 w-8 mt-2 mr-3">
-           <input  className="text-white bg-black cursor-pointer hover:bg-gray-900 " type="button" value="+" />
-           <input className="text-white bg-black cursor-pointer hover:bg-gray-900" type="button" value="-" />
-           <div className="bg-black flex justify-center items-center p-1 hover:bg-gray-900 cursor-pointer"> 
-            <Trash color="#fff" className="w-4 h-4"/>
+            <input  className="text-white bg-black cursor-pointer hover:bg-gray-900 " type="button" value="+" />
+            <input className="text-white bg-black cursor-pointer hover:bg-gray-900" type="button" value="-" />
+            <div className="bg-black flex justify-center items-center p-1 hover:bg-gray-900 cursor-pointer"> 
+              <Trash color="#fff" className="w-4 h-4"/>
            </div>
            </div>
          </div>

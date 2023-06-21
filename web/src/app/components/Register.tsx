@@ -5,6 +5,7 @@ import { api } from "../lib/api"
 
 export default function RegisterForm() {
     const router = useRouter()
+    
     async function handleUserCreation(event: FormEvent<HTMLFormElement>){
         event.preventDefault()
         const formData = new FormData(event.currentTarget)

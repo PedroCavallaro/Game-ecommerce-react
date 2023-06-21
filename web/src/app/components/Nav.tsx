@@ -28,7 +28,7 @@ export default function Nav() {
                 <a href="" className="hover:text-gray-400">Sobre</a>
                
                 <div className=" cursor-pointer flex items-center justify-center gap-10 ">
-                    <a href="./">
+                    <a href="./WishList">
                         <Heart/>
                     </a>
                     <a href="./Cart">

@@ -1,17 +1,26 @@
 import Image from 'next/image'
 import { ShoppingCart, ArrowRight} from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
+export interface Product{
+    id:string
+    name: string,
+    desc: string,
+    value: number,
+    coverUrl: string,
+    qtd: number
+}
 export const saveProduct = (product : Product)=>{
     let arrProducts : Product[] = [] 
-    const newProduct: Product ={
+    const newProduct: Product = {
         id: product.id,
         coverUrl: product.coverUrl,
         name: product.name,
         desc:product.desc,
         value: product.value,
         qtd: product.qtd
-    }
+    }   
 
     if(localStorage.getItem("cart")){
        
@@ -37,16 +46,14 @@ export const saveProduct = (product : Product)=>{
     }
 }
 
-export interface Product{
-    id:string
-    name: string,
-    desc: string,
-    value: number,
-    coverUrl: string,
-    qtd: number
-}
-
 export function Card(product: Product) {
+
+    const router = useRouter()
+
+    function setProductId(id: string){
+        localStorage.setItem('id', id)
+        router.push('/ProductPage')
+    }
     
     return(
         <div className='bg-white text-black flex flex-col gap-3 mt-5 w-60'>
@@ -71,9 +78,9 @@ export function Card(product: Product) {
                             <h3 className='price unity'>R$ {product.value}</h3>
                         </div>
                         <label>
-                            <a href={`./ProductPage?product=${product.id}`}>
+                            <button onClick={() => setProductId(product.id)}>
                                 <ArrowRight className='relative -bottom-4' />
-                            </a>
+                            </button>
                             
                         </label>
                     </div>
