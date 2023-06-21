@@ -1,8 +1,11 @@
 import { Product } from "@/app/components/Card";
 import Image from 'next/image'
+import { useRouter } from "next/navigation";
+import { setProductId } from "../../components/Card";
 
 
 export default function ProductView(product: Omit<Product, "qtd" | "desc">) {
+    const router = useRouter()
     return(
         <div className="flex p-3">
             <div className="flex shadow-[0px_0px_4px_0px_rgba(0,0,0,0.75)] w-[35rem]  justify-between">
@@ -16,9 +19,9 @@ export default function ProductView(product: Omit<Product, "qtd" | "desc">) {
                             <p>R$ {product.value }</p>
                     </div>
                 </div>
-                    <a href={`./ProductPage?product=${product.id}`} className="text-white  mr-3 mt-3 bg-black h-8 p-1 text-sm hover:bg-gray-900">
+                    <button onClick={() => setProductId(product.id, router  )} className="text-white  mr-3 mt-3 bg-black h-8 p-1 text-sm hover:bg-gray-900">
                         Mais Informações
-                    </a>
+                    </button>
             </div>
         </div>
     )

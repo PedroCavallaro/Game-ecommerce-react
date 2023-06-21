@@ -6,7 +6,6 @@ import { api } from '../lib/api'
 
 
 
-
 export default function ProductPage() {    
     const [product, setProducts] = useState<Product[]>([])
     

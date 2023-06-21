@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { ShoppingCart, ArrowRight} from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context';
 
 export interface Product{
     id:string
@@ -45,16 +46,12 @@ export const saveProduct = (product : Product)=>{
        localStorage.setItem("cart", JSON.stringify(arrProducts))
     }
 }
-
+export  function setProductId(id: string, router: AppRouterInstance){
+    localStorage.setItem('id', id)
+    router.push('/ProductPage')
+}
 export function Card(product: Product) {
-
     const router = useRouter()
-
-    function setProductId(id: string){
-        localStorage.setItem('id', id)
-        router.push('/ProductPage')
-    }
-    
     return(
         <div className='bg-white text-black flex flex-col gap-3 mt-5 w-60'>
                <div className='flex justify-center items-center flex-col gap-2 h-30 overflow-hidden '>
@@ -78,7 +75,7 @@ export function Card(product: Product) {
                             <h3 className='price unity'>R$ {product.value}</h3>
                         </div>
                         <label>
-                            <button onClick={() => setProductId(product.id)}>
+                            <button onClick={() => setProductId(product.id, router)}>
                                 <ArrowRight className='relative -bottom-4' />
                             </button>
                             

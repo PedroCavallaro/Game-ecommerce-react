@@ -1,9 +1,10 @@
 "use client"
-import{ AlignJustify, Heart, ShoppingCart , UserCircle} from "lucide-react"
+import{ Heart, ShoppingCart , UserCircle} from "lucide-react"
 import { useEffect, useState } from "react"
-
+import { useRouter } from "next/navigation"
+import Link from "next/link"
 export default function Nav() {
-
+    const router = useRouter()
     const [isAuth, setAuth] = useState<string>()
 
     useEffect(()=>{
@@ -25,7 +26,7 @@ export default function Nav() {
             </div>
             <ul className=" flex flex-row gap-10 items-center text-sm text-black">
                 <a href="./Games" className="hover:text-gray-400">Jogos</a>
-                <a href="" className="hover:text-gray-400">Sobre</a>
+                <Link href="./About" className="hover:text-gray-400">Sobre</Link>
                
                 <div className=" cursor-pointer flex items-center justify-center gap-10 ">
                     <a href="./WishList">
@@ -34,9 +35,9 @@ export default function Nav() {
                     <a href="./Cart">
                         <ShoppingCart/>
                     </a>
-                    <a href={isAuth? "./UserData" : "./Login"}>
+                    <button onClick={ () => isAuth? router.push("/UserData") : router.push("/Login")}>
                         <UserCircle/>
-                    </a>
+                    </button>
                 </div>
             </ul>  
             </div>

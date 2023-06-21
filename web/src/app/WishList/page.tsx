@@ -1,13 +1,11 @@
 "use client"
 import LeftMenu from "../components/LeftMenu";
-import RightMenu from "../components/RightMenu";
 import jwtDecode from "jwt-decode";
 import Cookies from "js-cookie"
 import { useMemo, useState } from "react";
 import { Product } from "../components/Card";
 import { api } from "../lib/api";
 import ProductView from "./components/ProductView";
-
 
 
 
