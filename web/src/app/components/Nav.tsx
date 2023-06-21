@@ -18,11 +18,11 @@ export default function Nav() {
     
             <div className="flex justify-between p-2 text-black">
             <div>
-                <a href="./../">
+                <Link href="./../">
                     <h1 className="flex gap-1 hover:text-gray-600">
                         The Boys <p className="mt-2"> game store</p>
                     </h1>
-                </a>
+                </Link>
             </div>
             <ul className=" flex flex-row gap-10 items-center text-sm text-black">
                 <a href="./Games" className="hover:text-gray-400">Jogos</a>

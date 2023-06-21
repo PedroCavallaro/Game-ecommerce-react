@@ -1,16 +1,40 @@
-import gow from "../../../public/assets/gow.jpeg"
+import { useState, useMemo } from "react"
 import Image from 'next/image'
+import { api } from "../lib/api"
+import { Product, setProductId } from "./Card"
+import { useRouter } from "next/navigation"
 
 
 export default function Hero() {
-
+    const [products, setProducts] = useState<Product[]>([])
+    const router = useRouter()
+    
+    const memo = useMemo(async ()=>{
+        await api.get("./products")
+        .then(function (res:any){
+                setProducts(res.data)
+                
+        })
+    }, [])
+   
     return(
-        <div className="m-0 flex justify-center items-center  h-[30rem] gap-5">
-            <div className="flex justify-center items-center">
-                <Image  
-                className="w-[40rem] h-[25rem] object-cover hover:scale-[1.03] transition"
-                src={gow}
-                alt="gow"/>
+        <div className="m-0 flex flex-row justify-around items-center gap-[28rem]  h-[30rem] ">
+            <div className="flex  items-center  ">
+                
+                    {
+                        products.map((products) =>{
+                            return(
+                                    <Image 
+                                    key={0} 
+                                    width={1000}
+                                    height={1000}
+                                    className="w-[40rem] h-[25rem] object-cover hover:scale-[1.03] transition absolute"
+                                    src={`/assets/${products.coverUrl}`}
+                                    alt={products.name}/>
+                            )                       
+                        })
+                    }
+               
             </div>
             <div className="m-0 p-0 flex w-[40rem] h-[25rem] bg-gray-50">
                 <div className="p-5 flex flex-col gap-20 text-black">
@@ -22,6 +46,9 @@ export default function Hero() {
                         <p className="p-2">
                             Saiba mais
                         </p>
+                        {
+                                
+                        }
                         </a>
                     </div>
                 </div>

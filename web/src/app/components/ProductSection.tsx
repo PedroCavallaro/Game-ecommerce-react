@@ -10,6 +10,7 @@ export default function ProductSection(){
         await api.get("./products")
         .then(function (res:any){
                 setProducts(res.data)
+                console.log(res.data)
         })
     }, [])
    

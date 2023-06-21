@@ -26,32 +26,33 @@ export async function productRoutes(app: FastifyInstance) {
                 })
             }
         })
-})
-app.get("/productsAllInfo", async ()=>{
-    const products = await prisma.productAndGender.findMany({
-        select:{
-                    
-            product:{
-                select:{
-                    name: true,
-                    desc:true,
-                    value:true,
-                    mediaProduct:{
-                        select:{
-                            fileName:true
-                        }
-                    },
-                }
-            },
-            gender:{
-                select:{
-                    desc:true
+    })
+   
+    app.get("/productsAllInfo", async ()=>{
+        const products = await prisma.productAndGender.findMany({
+            select:{
+                        
+                product:{
+                    select:{
+                        name: true,
+                        desc:true,
+                        value:true,
+                        mediaProduct:{
+                            select:{
+                                fileName:true
+                            }
+                        },
+                    }
+                },
+                gender:{
+                    select:{
+                        desc:true
+                    }
                 }
             }
-        }
+        })
+        return products
     })
-    return products
-})
     app.get("/products/:id", async (req)=>{
         const params = z.object({
             id: z.string().uuid()
