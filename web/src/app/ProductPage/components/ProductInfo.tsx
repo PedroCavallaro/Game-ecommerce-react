@@ -1,13 +1,48 @@
 "use client"
 import { api } from "@/app/lib/api"
 import Image from 'next/image'
-import { useState, useMemo } from 'react'
 import { Product } from "@/app/components/Card"
 import {Heart, ShoppingBag, ShoppingCart} from "lucide-react"
+import { useMemo, useState } from "react"
+import { retrieveUserId } from "@/app/lib/globals"
 
 
 export default function ProductInfo(product: Product) {            
-  return(
+    
+    async function SaveOnWishList(userId: string, productId: string) {
+        await api.post("wishList", {
+            userId,
+            productId,
+
+        })
+    }
+    
+    const [clicked, setClicked] = useState<boolean>(false)
+
+    
+    const productId = localStorage.getItem("id") as string
+    const userId = retrieveUserId()
+   
+    
+
+    const memo = useMemo(async ()=>{
+
+        await api.get(`wishList/${userId}/${productId}`)
+        .then(function(response){
+        
+        if(typeof response.data[0] !== "undefined" ){
+            const { id } = response.data[0].product      
+            
+            if(productId === id){
+                setClicked(true)
+            }  
+        }
+        
+        })
+ 
+    }, [userId, productId])
+
+    return(
             <div className="flex w-screen justify-center items-center gap-7">
                 <div className="flex justify-center items-center">
                         <Image src={`/assets/${product.coverUrl}`} 
@@ -23,8 +58,18 @@ export default function ProductInfo(product: Product) {
                                 <p className="text-black text-lg" >R$ { product.value }</p>
                             </div>
                             <div className="flex flex-col gap-8">
-                                <button>
-                                        <Heart color="#000"/>
+                                <button
+                                className="w-6"
+                                onClick={() => {
+                                    if(clicked === false){
+                                        SaveOnWishList(userId, productId)
+                                    }
+                                    setClicked(!clicked)
+                                }}
+                                >
+                                        {
+                                            clicked? <Heart fill="#000" color="#000"/>: <Heart color="#000"/> 
+                                        }
                                 </button>
                             <p className="text-black text-lg">{product.desc}</p>
                             </div>

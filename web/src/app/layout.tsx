@@ -23,7 +23,7 @@ export default function RootLayout({
 
       return (
         <html lang="pt-br">
-          
+          <title>The boys games</title>
           <body className={inter.className}>
             
             <Nav/>

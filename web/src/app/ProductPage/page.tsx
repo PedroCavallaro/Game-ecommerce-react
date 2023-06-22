@@ -6,15 +6,13 @@ import { api } from '../lib/api'
 
 
 
-export default function ProductPage() {    
+export default function ProductPage() { 
+
     const [product, setProducts] = useState<Product[]>([])
     
     const memo = useMemo(async ()=>{
       let idProduct = localStorage.getItem('id') as string
-  
-      if(idProduct){
-        localStorage.removeItem("id")
-      }
+      
       await api.get(`products/${idProduct}`)
       .then(function(response){
         setProducts(response.data)

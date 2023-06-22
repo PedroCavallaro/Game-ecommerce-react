@@ -6,6 +6,7 @@ import { useMemo, useState } from "react";
 import { Product } from "../components/Card";
 import { api } from "../lib/api";
 import ProductView from "./components/ProductView";
+import { retrieveUserId } from "../lib/globals";
 
 
 
@@ -13,26 +14,22 @@ interface ApiResponse {
     product: Pick<Product, "id" | "value" | "name">,
 
     mediaProduct: [
-        {
-            fileName: string
-        }
+            {
+                fileName: string
+            }
         ]
 }
 
 
 
 
-const getUserId  = () =>{
-    const token: any = jwtDecode(Cookies.get("token")!)
-    const  { id } = token[0]
-    return id
-}
+
 export default function WishList() {
         const [wishList, setWishList] = useState<ApiResponse[]>([])
             
         const memo = useMemo(async ()=>{
                 const url = new URLSearchParams(window.location.search)
-                await api.get(`./wishList/${getUserId()}`)
+                await api.get(`./wishList/${retrieveUserId()}`)
                 .then(function (res){
                 setWishList(res.data)
                 })
