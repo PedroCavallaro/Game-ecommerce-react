@@ -25,16 +25,16 @@ export default function Nav() {
                 </Link>
             </div>
             <ul className=" flex flex-row gap-10 items-center text-sm text-black">
-                <a href="./Games" className="hover:text-gray-400">Jogos</a>
+                <Link href="./Games" className="hover:text-gray-400">Jogos</Link>
                 <Link href="./About" className="hover:text-gray-400">Sobre</Link>
                
                 <div className=" cursor-pointer flex items-center justify-center gap-10 ">
-                    <a href="./WishList">
+                    <Link href="./WishList">
                         <Heart/>
-                    </a>
-                    <a href="./Cart">
+                    </Link>
+                    <Link href="./Cart">
                         <ShoppingCart/>
-                    </a>
+                    </Link>
                     <button onClick={ () => isAuth? router.push("/UserData") : router.push("/Login")}>
                         <UserCircle/>
                     </button>

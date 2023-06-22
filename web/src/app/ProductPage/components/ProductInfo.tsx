@@ -4,19 +4,12 @@ import Image from 'next/image'
 import { Product } from "@/app/components/Card"
 import {Heart, ShoppingBag, ShoppingCart} from "lucide-react"
 import { useMemo, useState } from "react"
-import { retrieveUserId } from "@/app/lib/globals"
+import { DeleteFromWishList, SaveOnWishList, retrieveUserId } from "@/app/lib/globals"
 
 
 export default function ProductInfo(product: Product) {            
     
-    async function SaveOnWishList(userId: string, productId: string) {
-        await api.post("wishList", {
-            userId,
-            productId,
-
-        })
-    }
-    
+   
     const [clicked, setClicked] = useState<boolean>(false)
 
     
@@ -61,7 +54,11 @@ export default function ProductInfo(product: Product) {
                                 <button
                                 className="w-6"
                                 onClick={() => {
-                                    if(clicked === false){
+                                    if(clicked){
+                                        DeleteFromWishList(userId,productId)
+                                        
+                                    }else{
+                                        
                                         SaveOnWishList(userId, productId)
                                     }
                                     setClicked(!clicked)

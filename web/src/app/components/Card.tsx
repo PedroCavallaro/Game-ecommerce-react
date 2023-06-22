@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { ShoppingCart, ArrowRight} from 'lucide-react';
-import Link from 'next/link';
+import Swal from 'sweetalert2';
 import { useRouter } from 'next/navigation';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context';
 
@@ -51,6 +51,17 @@ export  function setProductId(id: string, router: AppRouterInstance){
     router.push('/ProductPage')
 }
 export function Card(product: Product) {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        color: "#000",
+        showConfirmButton: false,
+        background: "#ffff",
+        timer: 1500,
+        timerProgressBar: true,
+      
+      })
+      
     const router = useRouter()
     return(
         <div className='bg-white text-black flex flex-col gap-3 mt-5 w-60'>
@@ -72,7 +83,13 @@ export function Card(product: Product) {
                </div>
                 <div className='flex flex-col gap-5'>
                     <div className='flex justify-center items-center'>
-                        <ShoppingCart onClick={() =>{ saveProduct(product)} } className='cursor-pointer'/>
+                        <ShoppingCart onClick={() =>{ 
+                            Toast.fire({
+                                icon: "success",
+                                title: "Item adicionado ao carrinho com sucesso"
+                            })
+                            saveProduct(product)} 
+                            } className='cursor-pointer'/>
                     </div>
                     <div className='flex justify-between p-2'>
                         <div>

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { useRouter } from "next/navigation";
 import { setProductId } from "../../components/Card";
 import { retrieveUserId } from "@/app/lib/globals";
+import { Heart } from "lucide-react";
 
 
 export default function ProductView(product: Omit<Product, "qtd" | "desc">) {
@@ -16,8 +17,14 @@ export default function ProductView(product: Omit<Product, "qtd" | "desc">) {
                     width={1000}
                     height={1000}
                     className="w-28"/>
-                    <div className="flex flex-col gap-4  text-black ml-3">
+
+                    <div className="flex flex-col gap-8  text-black ml-3">
                             <h2>{product.name}</h2>
+                            <button 
+                            className="w-4 h-4"
+                            >
+                                <Heart color="#000" fill="#000" className="w-5 h-5"/>
+                            </button>
                             <p>R$ {product.value }</p>
                     </div>
                 </div>

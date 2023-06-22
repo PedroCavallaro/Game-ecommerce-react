@@ -36,10 +36,10 @@ export default function LeftMenu() {
         color: "black",
     })
     
-    const page = window.location.href.toString().split("/")
-     
+    const page = JSON.parse(localStorage.getItem("page") || "{}") as string
+  
     arrInfo.map((info) =>{
-        if(info.id === page[page.length-1]){
+        if(info.id === page){
                 info.bgColor = "black"
                 info.color = "white"
         }

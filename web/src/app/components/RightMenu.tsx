@@ -1,6 +1,5 @@
 "use client"
 import { Product } from "@/app/components/Card";
-import { Button } from "./Button";
 import InfoCard from "./InfoCard";
 
 
