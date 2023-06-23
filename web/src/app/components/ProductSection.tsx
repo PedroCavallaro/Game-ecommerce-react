@@ -5,7 +5,7 @@ import { useState, useMemo } from 'react';
 
 export default function ProductSection(){
     const [products, setProducts] = useState<Product[]>([])
-                   
+    let count = 0
     const memo = useMemo(async ()=>{
         await api.get("./products")
         .then(function (res:any){
@@ -19,6 +19,7 @@ export default function ProductSection(){
         <div className='w-screen flex justify-center gap-5'>
             {
                 products.map((e: any) =>{
+          
                     return (
                         <Card qtd={1} id={e.id} key={e.name} name={e.name} desc={e.desc} value={e.value} coverUrl={e.coverUrl}/>
                     )

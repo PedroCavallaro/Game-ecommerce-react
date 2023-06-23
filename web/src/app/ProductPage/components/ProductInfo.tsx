@@ -14,24 +14,25 @@ export default function ProductInfo(product: Product) {
 
     
     const productId = localStorage.getItem("id") as string
-    const userId = retrieveUserId()
+    const userId = retrieveUserId() as string
    
     
 
     const memo = useMemo(async ()=>{
-
-        await api.get(`wishList/${userId}/${productId}`)
-        .then(function(response){
-        
-        if(typeof response.data[0] !== "undefined" ){
-            const { id } = response.data[0].product      
-            
-            if(productId === id){
-                setClicked(true)
-            }  
+        if(userId !== ""){
+            api.get(`wishList/${userId}/${productId}`)
+               .then(function(response){
+               
+               if(typeof response.data[0] !== "undefined" ){
+                   const { id } = response.data[0].product      
+                   
+                   if(productId === id){
+                       setClicked(true)
+                   }  
+               }
+               
+               })
         }
-        
-        })
  
     }, [userId, productId])
 

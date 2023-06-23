@@ -28,7 +28,7 @@ export default function ProductView(product: Omit<Product, "qtd" | "desc">) {
                             <p>R$ {product.value }</p>
                     </div>
                 </div>
-                    <button onClick={() => setProductId(product.id, router  )} className="text-white  mr-3 mt-3 bg-black h-8 p-1 text-sm hover:bg-gray-900">
+                    <button onClick={() => setProductId(product.id, router  )} className="text-white rounded-full  mr-3 mt-3 bg-black h-9 p-2 text-sm hover:bg-gray-900">
                         Mais Informações
                     </button>
             </div>

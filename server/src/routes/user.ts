@@ -51,11 +51,11 @@ export async function userRoutes(app: FastifyInstance) {
     })
     app.post("/user", async (req)=>{
         const schema = z.object({
-            name: z.string(), 
+            name: z.string(),   
             password: z.string()   
         })   
         const {name, password} = schema.parse(req.body)
-        
+
         const userAlreadyRegistered = await prisma.user.findMany({
             where:{
                 name
@@ -68,7 +68,7 @@ export async function userRoutes(app: FastifyInstance) {
                 password
             }
         })
-        return user
+        return user + name + "/" + password
         // }
     })
     

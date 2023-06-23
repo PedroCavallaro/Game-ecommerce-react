@@ -15,21 +15,22 @@ export default function RightMenu() {
             
             {
                     arrProducts.map((product) =>{
-                        return(
-                            <div  key={0} className="shadow">
-                                <InfoCard
-                            
-                                coverUrl={product.coverUrl}
-                                name={product.name}
-                                qtd={product.qtd}
-                                value={product.value}
-                            />
-                             </div>
-                        )
+                       if(product.qtd !== 0){
+                           return(
+                               <div  key={0} className="shadow">
+                                   <InfoCard
+                                   coverUrl={product.coverUrl}
+                                   name={product.name}
+                                   qtd={product.qtd}
+                                   value={product.value}
+                               />
+                                </div>
+                           )
+                       }
                     })
                 }
             
-             <input value={"Finalizar Compra"} type="submit" className="text-white absolute cursor-pointer right-3 top-0 mt-2 p-2 bg-black hover:bg-gray-900"/>
+             <input value={"Finalizar Compra"} type="submit" className="text-white absolute cursor-pointer rounded-full right-3 top-0 mt-2 p-2 bg-black hover:bg-gray-900"/>
         </div>  
        
     )

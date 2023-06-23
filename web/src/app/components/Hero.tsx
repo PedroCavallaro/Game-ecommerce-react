@@ -47,6 +47,7 @@ export default function Hero() {
             <div className="flex h-[25rem] w-[40rem] items-center justify-center overflow-hidden">
                 
                     {
+                    
                         products.map((products) =>{
                             return(
                                 <div 
@@ -88,7 +89,7 @@ export default function Hero() {
                                         MoveImageLeft(count)
                                         setCount(count -= 1)
                                     }
-                                    console.log(count)
+                                 
                                 }
                             }}>{"<-"}</button>
                             {
