@@ -29,17 +29,17 @@ export default function RegisterForm() {
     })
     const router = useRouter()
     
-    type FormData = {
+    type FormInfo = {
         name: string,
         password: string
     }
 
-    async function handleUserCreation({name, password}: FormData){
+    async function handleUserCreation({name, password}: FormInfo){
         await api.post("/user", {
             name,
             password
         })
-        router.push("./")
+        router.push("/Login")
     }
 
     return(

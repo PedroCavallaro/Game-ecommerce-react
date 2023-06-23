@@ -39,7 +39,7 @@ export default function Games() {
         }
 
     },[])
-    console.log(products)
+   
     return(
         <>
         <Title/>

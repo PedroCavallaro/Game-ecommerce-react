@@ -5,7 +5,7 @@ import { useState, useMemo } from 'react';
 
 export default function ProductSection(){
     const [products, setProducts] = useState<Product[]>([])
-    let count = 0
+    
     const memo = useMemo(async ()=>{
         await api.get("./products")
         .then(function (res:any){

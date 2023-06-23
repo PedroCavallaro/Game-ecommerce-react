@@ -53,7 +53,7 @@ export default function Hero() {
                                 <div 
                                 className="absolute"
                                 key={0}>
-                                        <Image 
+                                    <Image 
                                     
                                     width={1000}
                                     height={1000}
@@ -82,14 +82,14 @@ export default function Hero() {
                             className="text-lg font-extrabold"
                             onClick={()=> {
                                  if(count != 0){
-                                    if(count === 2){
+                                    if(count === 3){
                                         MoveImageLeft(0)
                                         setCount(count -= 1)
                                     }else{
                                         MoveImageLeft(count)
                                         setCount(count -= 1)
                                     }
-                                 
+                               
                                 }
                             }}>{"<-"}</button>
                             {
@@ -105,9 +105,9 @@ export default function Hero() {
                             className="text-lg font-extrabold"
                             onClick={()=> {
                                
-                                if(count != 2){
+                                if(count != 3){
                                     if(count === 0){
-                                        moveImageRight(2)
+                                        moveImageRight(3)
                                         setCount(count += 1)
                                     }else{
                                         moveImageRight(count)
