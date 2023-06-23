@@ -11,7 +11,7 @@ return(
             <Image src={`/assets/${product.coverUrl}`} alt={product.name}
             width={1000}
             height={1000}
-            className="w-28 h-30"/>
+            className="w-36 h-30"/>
             <div className="flex flex-col w-[10rem] gap-4 text-black ml-3">
                     <h2>{product.name}</h2>
                     <p>{product.qtd}x</p>

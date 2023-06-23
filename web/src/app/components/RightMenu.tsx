@@ -5,7 +5,11 @@ import InfoCard from "./InfoCard";
 
 export default function RightMenu() {
     let arrProducts: Product[] = []
-    arrProducts = JSON.parse(localStorage.getItem("cart") || "{}")
+    
+    if(localStorage.getItem("cart")){
+
+        arrProducts = JSON.parse(localStorage.getItem("cart") || "{}")
+    }
     return (
         <div className="bg-white w-[50rem] relative " >
             
@@ -26,6 +30,7 @@ export default function RightMenu() {
                 }
             
              <input value={"Finalizar Compra"} type="submit" className="text-white absolute cursor-pointer right-3 top-0 mt-2 p-2 bg-black hover:bg-gray-900"/>
-        </div>    
+        </div>  
+       
     )
 }

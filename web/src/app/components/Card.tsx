@@ -86,7 +86,7 @@ export function Card(product: Product) {
                         <ShoppingCart onClick={() =>{ 
                             Toast.fire({
                                 icon: "success",
-                                title: "Item adicionado ao carrinho com sucesso"
+                                title: "Item adicionado ao carrinho"
                             })
                             saveProduct(product)} 
                             } className='cursor-pointer'/>

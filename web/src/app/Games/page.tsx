@@ -2,6 +2,7 @@
 import {useEffect, useMemo, useState} from "react"
 import { api } from "../lib/api"
 import { Card } from "../components/Card"
+import Title from "../components/Title"
 
 interface Gender{
     desc: string
@@ -40,6 +41,8 @@ export default function Games() {
     },[])
     console.log(products)
     return(
+        <>
+        <Title/>
         <div>
             {
                 
@@ -77,5 +80,6 @@ export default function Games() {
             }
         </div>
        
+        </>
     )
 }

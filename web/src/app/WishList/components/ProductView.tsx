@@ -16,7 +16,7 @@ export default function ProductView(product: Omit<Product, "qtd" | "desc">) {
                     <Image src={`/assets/${product.coverUrl}`} alt={product.name}
                     width={1000}
                     height={1000}
-                    className="w-28"/>
+                    className="w-36"/>
 
                     <div className="flex flex-col gap-8  text-black ml-3">
                             <h2>{product.name}</h2>

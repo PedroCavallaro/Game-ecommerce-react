@@ -7,6 +7,7 @@ import { Product } from "../components/Card";
 import { api } from "../lib/api";
 import ProductView from "./components/ProductView";
 import { retrieveUserId } from "../lib/globals";
+import Title from "../components/Title";
 
 
 
@@ -41,11 +42,13 @@ export default function WishList() {
 
 
        return(
-           <div className="flex mt-16 justify-center items-center">
+        <>
+        <Title/>
+        <div className="flex mt-16 justify-center items-center">
                 <div className='flex justify-center  gap-20'>
                     <LeftMenu/>
                     <div className="bg-white w-[50rem] relative " >
-                       {
+                    {
                         wishList.map((e)=>{
                             console.log(e)
                             // @ts-ignore
@@ -61,10 +64,11 @@ export default function WishList() {
                                 />
                             )
                         })
-                       }     
+                    }     
                     
                     </div>
-		        </div>
-           </div>
+                </div>
+        </div>
+        </>
         )
 }
