@@ -50,7 +50,7 @@ export default function LeftMenu() {
                 arrInfo.map((button) =>{
                     return (
                         
-                        <Button key={0} id={button.id}
+                        <Button key={button.tittle} id={button.id}
                          tittle={button.tittle} 
                          bgColor={button.bgColor} 
                          color={button.color}/>

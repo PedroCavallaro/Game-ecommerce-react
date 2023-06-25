@@ -1,7 +1,9 @@
+import { ReactNode } from "react";
+import { Gender } from "../Games/page";
+
 interface FormProps{
-    children: any,
-    method: ()=>void
-   
+    children: ReactNode,
+    method: ()=>Gender[]
 }
 
 export default function Form({children, method} : FormProps) {

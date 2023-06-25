@@ -11,7 +11,7 @@ interface Token{
 export function retrieveUserId(){
     if(Cookies.get("token")){
         const token: Token[] = jwtDecode(Cookies.get("token")!)
-        const   id  = token[0]?.id as string
+        const  id  = token[0]?.id as string
         return id
     }
     return ""

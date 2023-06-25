@@ -17,7 +17,7 @@ export default function RightMenu() {
                     arrProducts.map((product) =>{
                        if(product.qtd !== 0){
                            return(
-                               <div  key={0} className="shadow">
+                               <div  key={product.id} className="shadow">
                                    <InfoCard
                                    coverUrl={product.coverUrl}
                                    name={product.name}

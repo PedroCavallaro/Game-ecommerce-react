@@ -52,7 +52,7 @@ export default function Hero() {
                             return(
                                 <div 
                                 className="absolute"
-                                key={0}>
+                                key={products.coverUrl}>
                                     <Image 
                                     
                                     width={1000}
@@ -97,7 +97,7 @@ export default function Hero() {
                                     return(
                                         <input 
                                         className="bg-black h-3 w-3 rounded-full"
-                                        type="button" value="" key={0} />
+                                        type="button" value="" key={e.id} />
                                     )
                                 })
                             }

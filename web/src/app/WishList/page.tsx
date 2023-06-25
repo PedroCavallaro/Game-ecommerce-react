@@ -50,13 +50,12 @@ export default function WishList() {
                     <div className="bg-white w-[50rem] relative " >
                     {
                         wishList.map((e)=>{
-                            console.log(e)
                             // @ts-ignore
                             let { fileName } = e.product.mediaProduct[0]
 
                             return(
                                 <ProductView
-                                key={0}
+                                key={e.product.name}
                                 coverUrl={fileName}
                                 name={e.product.name}
                                 value={e.product.value}
