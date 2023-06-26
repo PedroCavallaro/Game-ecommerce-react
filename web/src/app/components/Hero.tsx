@@ -5,7 +5,7 @@ import { Product, setProductId } from "./Card"
 import { useRouter } from "next/navigation"
 import { Button } from "./Button"
 
-
+let imgCount = 4
 export default function Hero() {
     function getProductInfo(count:number){
         const res = JSON.parse(localStorage.getItem("hero") || "{}")
@@ -49,21 +49,27 @@ export default function Hero() {
                     {
                     
                         products.map((products) =>{
-                            return(
-                                <div 
-                                className="absolute"
-                                key={products.coverUrl}>
-                                    <Image 
-                                    
-                                    width={1000}
-                                    height={1000}
-                                    className=" w-[40rem] h-[25rem] object-cover hover:scale-[1.03] transition  z-0 img"
-                                    src={`/assets/${products.coverUrl}`}
-                                    alt={products.name}/>
-                                </div>
-                                   
-                            )                       
+                            
+                         
+
+                                return(
+                                    <div 
+                                    className="absolute"
+                                    key={products.coverUrl}>
+                                        <Image 
+                                        
+                                        width={1000}
+                                        height={1000}
+                                        className=" w-[40rem] h-[25rem] object-cover hover:scale-[1.03] transition  z-0 img"
+                                        src={`/assets/${products.coverUrl}`}
+                                        alt={products.name}/>
+                                    </div>
+                                       
+                                )                       
+                   
+                          
                         })
+
                     }
             </div>
             <div className="m-0 p-0 flex w-[40rem] h-[25rem] bg-gray-50 z-50">
@@ -82,12 +88,15 @@ export default function Hero() {
                             className="text-lg font-extrabold"
                             onClick={()=> {
                                  if(count != 0){
-                                    if(count === 3){
+    
+                                    if(count === 4){
                                         MoveImageLeft(0)
                                         setCount(count -= 1)
+                                        imgCount += 1
                                     }else{
-                                        MoveImageLeft(count)
+                                        MoveImageLeft(imgCount)
                                         setCount(count -= 1)
+                                        imgCount += 1
                                     }
                                
                                 }
@@ -105,12 +114,14 @@ export default function Hero() {
                             className="text-lg font-extrabold"
                             onClick={()=> {
                                
-                                if(count != 3){
+                                if(count != 4){
                                     if(count === 0){
-                                        moveImageRight(3)
+                                        moveImageRight(4)
                                         setCount(count += 1)
+                                        imgCount -= 1
                                     }else{
-                                        moveImageRight(count)
+                                        moveImageRight(imgCount)
+                                        imgCount -= 1
                                         setCount(count += 1)
                                     }
                                     console.log(count)

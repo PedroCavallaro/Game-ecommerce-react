@@ -1,43 +1,79 @@
 "use client"
-import { useEffect, useMemo, useState } from "react"
 import { api } from "../lib/api"
+import  { z }  from "zod"
+import {useForm} from "react-hook-form"
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from "next/navigation";
 
 
+const schema  = z.object({
+    name: z.string().min(4, {
+        message:" Nome de usuário precisa ser maior"
+    }),
+    password: z.string().min(8,{
+        message: "A senha deve ter no minimo 8 caracteres"
+    })
+})
+
+type FormData = z.infer<typeof schema>
 
 export default function LoginForm() {
+    const {
+        handleSubmit,
+        register,
+        formState: { errors }
+
+    } = useForm<FormData>({
+        mode:"onBlur",
+        resolver: zodResolver(schema)
+    })
+    const router = useRouter()
     
-        async function GetInfo() {
-            
-            const username: HTMLInputElement | null = document.querySelector("#username")
-            const password: HTMLInputElement | null = document.querySelector("#password")
-            await api.get(`/user/${username!.value}/${password!.value}`)
+    type FormInfo = {
+        name: string,
+        password: string
+    }
+    
+        async function GetInfo({name, password}: FormInfo) {
+            await api.get(`/user/${name}/${password}`)
             .then((res)=> {
                 const response = res.data
                 const d = new Date();
-                console.log(response)
                 document.cookie = `token=${response}; expires=${d.setTime(d.getTime() + 3600)}`
-                
+                router.push("./")
             })    
         }
 
  
     return (
-        <div className="bg-[#252424] w-[20rem] h-[25rem] flex flex-col justify-center items-center gap-7 overflow-hidden">
-            <label htmlFor="">
-                <p>Nome de Usuário</p>
-                <input type="text" name="username" id="username" className="bg-black w-[16rem] h-12 text-white" />
-            </label>    
-            <label htmlFor="">
-                <p>Senha</p>
-                <input type="password" id="password" name="password" className="bg-black h-12 w-[16rem] text-white"  />
-            </label> 
+        <form
+        onSubmit={handleSubmit ( async (data)=>{
+           GetInfo(data)
+       })} 
+
+       className="bg-[#252424] w-[20rem] h-[25rem] flex flex-col justify-center items-center gap-7">
+           <label htmlFor="">
+               <p>Nome de Usuário</p>
+               <input type="text" {...register("name")}  className="bg-black w-[16rem] h-12 text-white" />
+           </label>    
+               {
+                   errors.name?.message && <span className="text-sm text-red-500">{errors.password?.message}</span>
+               }
+           <label htmlFor="">
+               <p>Senha</p>
+               <input type="password" {...register("password")}  className="bg-black h-12 w-[16rem] text-white"  />
+           </label> 
+               {
+                   errors.password?.message && <span className="text-sm text-red-500">{errors.password?.message}</span>
+               }
+          
             <a href="./" id="enter">
-                <input type="button" value="Entrar" onClick={GetInfo} className="bg-white text-black w-[16rem] h-12 cursor-pointer"/>
+                <input type="submit" value="Entrar" className="bg-white text-black w-[16rem] h-12 cursor-pointer"/>
             </a>
             <a href="./Register" className="bg-white text-black w-[16rem] h-12 flex justify-center cursor-pointer">
                 <input type="button" value="Cadastre-se" />
             </a>
-        </div>
+        </form>
     )
 
 }

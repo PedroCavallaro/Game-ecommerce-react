@@ -47,7 +47,7 @@ export default function WishList() {
         <div className="flex mt-16 justify-center items-center">
                 <div className='flex justify-center  gap-20'>
                     <LeftMenu/>
-                    <div className="bg-white w-[50rem] relative " >
+                    <div className="bg-white w-[50rem]  h-[30rem] overflow-scroll overflow-x-hidden" >
                     {
                         wishList.map((e)=>{
                             // @ts-ignore

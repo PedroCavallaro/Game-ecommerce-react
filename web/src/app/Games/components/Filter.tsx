@@ -9,24 +9,24 @@ interface FilterProps {
 }
 export default function Filter({handleFilter, genders, products}: FilterProps) {
    
-    const filter = (e: any, filtereProducts: ProductInfo[]) =>{
+    const filter = (e: any, search:string) =>{
         e.preventDefault()
-        handleFilter(filtereProducts)
+        handleFilter(search)
     }
     return(
         <>
             <div className="flex flex-col gap-2 text-black">
-            <h2
-            className="text-lg"
-            >Filtros</h2>
-            <label
-            className="text-md"
-            htmlFor="search">Buscar por nome</label>
-            <input type="text" id="search"
-            className="bg-black text-white h-10 p-2"
-            placeholder="Buscar..."
-            onChange={event => filter(event, products.filter((e) => e.product.name.includes(event.target.value)))}
-            />
+                <h2
+                className="text-lg"
+                >Filtros</h2>
+                <label
+                className="text-md"
+                htmlFor="search">Buscar por nome</label>
+                <input type="text" id="search"
+                className="bg-black text-white h-10 p-2"
+                placeholder="Buscar..."
+                onChange={event => filter(event, event.currentTarget.value)}
+                />
             <p>Buscar por genêro</p>
                 {
                     genders.map((gender, index)=>{
@@ -38,7 +38,7 @@ export default function Filter({handleFilter, genders, products}: FilterProps) {
                                 className="cursor-pointer"
                                 type="checkbox" 
                                 onClick={(e)=>{
-                                    filter(e, products.filter((e) => e.gender.desc === gender.desc ))
+                                    // filter(e, products.filter((e) => e.gender.desc === gender.desc ))
                                 }}
                                  name="" id="" value={gender.desc}/>
                                 <h2>{gender.desc}</h2>
