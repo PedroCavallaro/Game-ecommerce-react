@@ -7,10 +7,10 @@ export default function Home() {
 	return (
     <>
       <Title/>
-      <main className="flex flex-col h-[60rem]">
+      <main className="flex flex-col h-[60rem] overflow-hidden">
           
           <Hero/>
-      <div className='flex justify-center overflow-hidden'>
+      <div className='flex justify-start ml-[10rem] w-[80rem] overflow-hidden'>
 
             <ProductSection/>  
       </div>

@@ -10,7 +10,8 @@ export interface Product{
     desc: string,
     value: number,
     coverUrl: string,
-    qtd: number
+    qtd: number,
+    section: string
 }
 export const saveProduct = (product : Product)=>{
     let arrProducts : Product[] = [] 
@@ -20,7 +21,8 @@ export const saveProduct = (product : Product)=>{
         name: product.name,
         desc:product.desc,
         value: product.value,
-        qtd: product.qtd
+        qtd: product.qtd,
+        section: product.section
     }   
 
     if(localStorage.getItem("cart")){
@@ -64,8 +66,9 @@ export function Card(product: Product) {
       
     const router = useRouter()
     return(
-        <div className='bg-white text-black flex flex-col gap-3 mt-5 w-60'>
-               <div className='flex justify-center items-center flex-col gap-2 h-30 overflow-hidden '>
+        <div className={ `bg-white text-black flex flex-col gap-3 mt-5 ${product.section}` } 
+        data-translate='0' >
+               <div className='flex justify-center items-center flex-col gap-2 h-30 overflow-hidden  w-[15rem]'>
                     <div className='h-[17rem] mt-3 w-[13rem] overflow-hidden rounded-[0.5rem]'>
                         <Image src={`/assets/${product.coverUrl}`}
                             width={500}

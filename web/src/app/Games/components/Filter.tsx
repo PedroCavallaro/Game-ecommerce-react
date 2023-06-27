@@ -31,7 +31,8 @@ export default function Filter({handleFilter, genders, products}: FilterProps) {
                 {
                     genders.map((gender, index)=>{
                         return(
-                            <label key={index.toString()} 
+                            <label 
+                            key={gender.desc.toString()} 
                             className="flex gap-2"
                             htmlFor="">
                                 <input 

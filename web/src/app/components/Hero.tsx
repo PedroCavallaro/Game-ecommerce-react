@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation"
 import { Button } from "./Button"
 
 let imgCount = 4
+let heroImgCount = 0
 export default function Hero() {
     function getProductInfo(count:number){
         const res = JSON.parse(localStorage.getItem("hero") || "{}")
@@ -33,7 +34,7 @@ export default function Hero() {
     useEffect(()=>{
         setHero(getProductInfo(count))
     }, [count])
-
+    console.log(products.toSpliced(0, products.length - 5))
     const memo = useMemo(async ()=>{
         await api.get("./products")
         .then(function (res:any){
@@ -42,16 +43,13 @@ export default function Hero() {
         })
           
     }, [])
+
     return(
         <div className="m-0 flex flex-row justify-center items-center overflow-hidden h-[30rem] gap-7 ">
             <div className="flex h-[25rem] w-[40rem] items-center justify-center overflow-hidden">
                 
                     {
-                    
-                        products.map((products) =>{
-                            
-                         
-
+                        products.toSpliced(0, products.length - 5 ).map((products) =>{ 
                                 return(
                                     <div 
                                     className="absolute"
@@ -64,10 +62,8 @@ export default function Hero() {
                                         src={`/assets/${products.coverUrl}`}
                                         alt={products.name}/>
                                     </div>
-                                       
-                                )                       
-                   
-                          
+                                    ) 
+                           
                         })
 
                     }
@@ -102,7 +98,7 @@ export default function Hero() {
                                 }
                             }}>{"<-"}</button>
                             {
-                                products.map((e)=>{
+                                 products.toSpliced(0, products.length - 5 ).map((e)=>{
                                     return(
                                         <input 
                                         className="bg-black h-3 w-3 rounded-full"

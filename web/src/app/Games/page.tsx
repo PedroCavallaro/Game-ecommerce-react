@@ -62,9 +62,9 @@ export default function Games() {
         <>
         <Title/>
         <div className="flex pl-2">
-            <div className="mt-[5rem]   h-[20rem] p-5 bg-white">
+            <div className="mt-[5rem] h-[30rem] p-5 bg-white">
                 <Filter 
-            
+
                 handleFilter={filterProductsHandle}
                 products={products}
                 genders={genders}/>
@@ -77,14 +77,15 @@ export default function Games() {
                     return(
                         <>
                         
-                            <h1 className="text-lg p-2 ml-4">{gender.desc}</h1>
-                            <div className="flex gap-7">
+                            <h1 key={index} className="text-lg p-2 ml-4">{gender.desc}</h1>
+                            <div className="flex gap-7 ">
                             {
-                                filteredProducts.map((product, index)=>{
+                                filteredProducts.map((product, prodIndex)=>{
                                     if(product.gender.desc === gender.desc){
                                         return(
                                             <Card
-                                            key={index.toString()}
+                                            section={`section${index}`}
+                                            key={prodIndex.toString()}
                                             id={product.product.id}
                                             name={product.product.name}
                                             qtd={1}
@@ -98,7 +99,7 @@ export default function Games() {
                             </div>
                             <div className="flex justify-center items-center mt-5">
 
-                                <SliderButtons arr={filteredProducts}/>    
+                                <SliderButtons arr={filteredProducts} sectionId={index.toString()} />    
                             </div>
                         </>
                     )

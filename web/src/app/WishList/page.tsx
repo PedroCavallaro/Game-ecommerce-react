@@ -55,6 +55,7 @@ export default function WishList() {
 
                             return(
                                 <ProductView
+                                section=""
                                 key={e.product.name}
                                 coverUrl={fileName}
                                 name={e.product.name}

@@ -3,9 +3,9 @@ import { Product } from "@/app/components/Card"
 import Image from "next/image"
 import { Trash } from 'lucide-react';
 import { useEffect, useState } from "react";
-import RemoveFromCart, { AddToCart, SubtractFromCart } from "../lib/globals";
+import { RemoveFromCart, AddToCart, SubtractFromCart } from "../lib/globals";
 
-export default function InfoCard(product:Omit<Product, "desc" | "id">) {
+export default function InfoCard(product:Omit<Product, "desc" | "id" | "section">) {
 const [count, setCount] = useState(product.qtd)
 
 useEffect(()=>{

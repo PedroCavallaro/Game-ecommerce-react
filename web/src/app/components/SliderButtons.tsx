@@ -1,22 +1,58 @@
 interface SliderProps{
-    arr: any[]
+    arr: any[],
+    sectionId: string
 }
-export default function SliderButtons({arr}: SliderProps) {
+function MoveImageRight(sectionId: string){
+    const imgs: NodeListOf<HTMLImageElement> = document.querySelectorAll(".section" + sectionId)
+    imgs.forEach((e)=>{
+        
+        let previousTranslate:number = 0
+        previousTranslate = Number(e.dataset?.translate)
+        if(previousTranslate !== 0){
+            let newTranslate = previousTranslate! += 16
+    
+    
+            e.style.transform = `translate(${newTranslate}rem)`
+            e.dataset!.translate = String(newTranslate)
+            e.style.transition = "1s ease"
+        }
+       
+    })
+}
+function MoveImageLeft(sectionId: string){
+    const imgs: NodeListOf<HTMLImageElement> = document.querySelectorAll(".section" + sectionId)
+    imgs.forEach((e)=>{
+        let previousTranslate:number = 0
+        previousTranslate = Number(e.dataset?.translate)
+       
+        let newTranslate = previousTranslate! -= 16
+
+        e.style.transform = `translate(${newTranslate}rem)`
+        e.dataset!.translate = String(newTranslate)
+        e.style.transition = "1s ease"
+        
+    })
+}
+export default function SliderButtons({arr, sectionId}: SliderProps) {
     return(
         <>  
         <div className="flex gap-7 justify-center items-center">
 
-        <button>{"<-"}</button>
+        <button
+        onClick={() => MoveImageLeft(sectionId)}
+        >{"<-"}</button>
           {
             arr.map((element, index) =>{
                 return(
                     <input 
-                    className="bg-white h-3 w-3 rounded-full"
+                    className="bg-white h-3 w-3 rounded-full font-extrabold"
                     type="button" value="" key={index} />
                 )
             })
           }      
-         <button>{"->"}</button>
+         <button
+         onClick={() => MoveImageRight(sectionId)}
+         >{"->"}</button>
         </div>
         </>
     )

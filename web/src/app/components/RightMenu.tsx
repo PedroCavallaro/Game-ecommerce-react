@@ -19,6 +19,7 @@ export default function RightMenu() {
                            return(
                                <div  key={product.id} className="shadow">
                                    <InfoCard
+                                   
                                    coverUrl={product.coverUrl}
                                    name={product.name}
                                    qtd={product.qtd}

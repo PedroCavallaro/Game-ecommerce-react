@@ -11,8 +11,6 @@ export default function HeroButtons(products: Product[], [count, setCount]: any)
     }
     function MoveImageLeft(count:number){
         const img: NodeListOf<HTMLImageElement> = document.querySelectorAll(".i")
-        
-      
         img[count].style.transform = "translate(0%)"
     }
     return(

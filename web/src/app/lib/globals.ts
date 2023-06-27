@@ -32,7 +32,7 @@ export async function DeleteFromWishList(userId: string, productId: string) {
         }
     })
 }
-export function AddToCart( product: Omit<Product, "desc" | "id">){
+export function AddToCart( product: Omit<Product, "desc" | "id" | "section">){
     let arrProducts: Product[]
     arrProducts = JSON.parse(localStorage.getItem("cart") || "{}")
 
@@ -44,7 +44,7 @@ export function AddToCart( product: Omit<Product, "desc" | "id">){
         })
         localStorage.setItem("cart", JSON.stringify(arrProducts))
 }
-export function SubtractFromCart(product:Omit<Product, "desc" | "id">){
+export function SubtractFromCart(product:Omit<Product, "desc" | "id" | "section">){
     let arrProducts: Product[]
     arrProducts = JSON.parse(localStorage.getItem("cart") || "{}")   
 
@@ -55,7 +55,7 @@ export function SubtractFromCart(product:Omit<Product, "desc" | "id">){
         })
         localStorage.setItem("cart", JSON.stringify(arrProducts))
 }
-export default function RemoveFromCart(product:Omit<Product, "desc" | "id">){
+export  function RemoveFromCart(product:Omit<Product, "desc" | "id" | "section">){
     let arrProducts: Product[]
     let saveOnls: Product[] = []
     arrProducts = JSON.parse(localStorage.getItem("cart") || "{}")  
@@ -64,3 +64,5 @@ export default function RemoveFromCart(product:Omit<Product, "desc" | "id">){
 
     localStorage.setItem("cart", JSON.stringify(saveOnls))
 }
+
+
