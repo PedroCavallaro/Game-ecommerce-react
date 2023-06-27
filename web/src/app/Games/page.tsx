@@ -25,13 +25,6 @@ export interface ProductInfo{
     }
     
 }
-async function getProducts() {
-    const products = await api.get("/genders&products")
-    const {data} = products
-
-    return data
-}
-
 export default function Games() {
     const [genders, setGenders] = useState<Gender[]>([])
     const [products, setProducts] = useState<ProductInfo[]> ([])    
@@ -77,15 +70,16 @@ export default function Games() {
                     return(
                         <>
                         
-                            <h1 key={index} className="text-lg p-2 ml-4">{gender.desc}</h1>
-                            <div className="flex gap-7 ">
+                            <h1 key={gender.desc} className="text-lg p-2 ml-4">{gender.desc}</h1>
+                            <div key={Math.random()} className="flex gap-7 ">
                             {
                                 filteredProducts.map((product, prodIndex)=>{
                                     if(product.gender.desc === gender.desc){
+                                        
                                         return(
                                             <Card
                                             section={`section${index}`}
-                                            key={prodIndex.toString()}
+                                            key={Math.random()}
                                             id={product.product.id}
                                             name={product.product.name}
                                             qtd={1}
@@ -97,9 +91,11 @@ export default function Games() {
                                 })
                             }
                             </div>
-                            <div className="flex justify-center items-center mt-5">
+                            <div
+                            key={Math.random()}
+                            className="flex justify-center items-center mt-5">
 
-                                <SliderButtons arr={filteredProducts} sectionId={index.toString()} />    
+                                <SliderButtons key={Math.random()} arr={filteredProducts} sectionId={index.toString()} />    
                             </div>
                         </>
                     )

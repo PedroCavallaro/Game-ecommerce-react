@@ -5,17 +5,18 @@ interface SliderProps{
 function MoveImageRight(sectionId: string){
     const imgs: NodeListOf<HTMLImageElement> = document.querySelectorAll(".section" + sectionId)
     imgs.forEach((e)=>{
-        
+            
         let previousTranslate:number = 0
         previousTranslate = Number(e.dataset?.translate)
-        if(previousTranslate !== 0){
-            let newTranslate = previousTranslate! += 16
-    
+        if(previousTranslate !== (-16 * (imgs.length -1)) ){
+            let newTranslate = previousTranslate! -= 16
+        
     
             e.style.transform = `translate(${newTranslate}rem)`
             e.dataset!.translate = String(newTranslate)
             e.style.transition = "1s ease"
         }
+   
        
     })
 }
@@ -24,13 +25,13 @@ function MoveImageLeft(sectionId: string){
     imgs.forEach((e)=>{
         let previousTranslate:number = 0
         previousTranslate = Number(e.dataset?.translate)
-       
-        let newTranslate = previousTranslate! -= 16
+        if(previousTranslate !== 0){
+            let newTranslate = previousTranslate! += 16
 
-        e.style.transform = `translate(${newTranslate}rem)`
-        e.dataset!.translate = String(newTranslate)
-        e.style.transition = "1s ease"
-        
+            e.style.transform = `translate(${newTranslate}rem)`
+            e.dataset!.translate = String(newTranslate)
+            e.style.transition = "1s ease"
+        }
     })
 }
 export default function SliderButtons({arr, sectionId}: SliderProps) {

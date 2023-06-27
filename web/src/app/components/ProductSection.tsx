@@ -41,6 +41,5 @@ export default function ProductSection(){
                 <SliderButtons sectionId='1' arr={products}/>
             </div>
         </div>
-    
     )
 }

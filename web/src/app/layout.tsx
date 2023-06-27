@@ -1,9 +1,7 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
-
 import { cookies } from 'next/headers'
 import Nav from './components/Nav'
-import Home from './page'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {

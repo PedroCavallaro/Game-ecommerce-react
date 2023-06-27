@@ -26,15 +26,16 @@ export default function ProductPage() {
       <Title/>
       <main className="flex justify-center center items-center w-screen h-[40rem]">
             {
-              product.map((e)=>{
+              product.map((e, index)=>{
               return (
-                <ProductInfo key={e.id} 
+                <ProductInfo key={e.id}
+                    section={index.toString()} 
                     coverUrl={e.coverUrl}
                     name={e.name}
                     value={e.value}
                     desc={e.desc}
                     id={e.id}
-                    qtd={e.qtd}
+                    qtd={1}
                   />
               )
               })

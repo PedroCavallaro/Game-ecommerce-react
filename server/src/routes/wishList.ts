@@ -3,7 +3,7 @@ import { prisma } from "../lib/prisma";
 import { z } from "zod"
 
 export async function wishListRoutes(app: FastifyInstance) {
-    app.get("/wishList/:id", async (req)=>{
+    app.get("/wishList/:id", async (req,reply)=>{
         const schema = z.object({
             id: z.string().uuid()
         })
@@ -30,7 +30,10 @@ export async function wishListRoutes(app: FastifyInstance) {
                 }
             }
         })
-
+        if(!products.length){
+            
+            return reply.status(401).send()
+        }
         return products
     })
     app.get("/wishList/:userId/:productId", async (req)=>{
@@ -66,7 +69,7 @@ export async function wishListRoutes(app: FastifyInstance) {
                 }
             }
         })
-
+     
         return products
     })
    app.post("/wishList", async (req)=>{

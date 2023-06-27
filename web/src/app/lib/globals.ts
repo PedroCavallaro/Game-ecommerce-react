@@ -8,10 +8,16 @@ interface Token{
     id: string
 }
 
+export function isAuthenticated(){
+    if(Cookies.get("token")){
+        return true 
+    }
+    return false
+}
 export function retrieveUserId(){
     if(Cookies.get("token")){
         const token: Token[] = jwtDecode(Cookies.get("token")!)
-        const  id  = token[0]?.id as string
+        const id = token[0]?.id as string
         return id
     }
     return ""
@@ -32,17 +38,28 @@ export async function DeleteFromWishList(userId: string, productId: string) {
         }
     })
 }
-export function AddToCart( product: Omit<Product, "desc" | "id" | "section">){
-    let arrProducts: Product[]
-    arrProducts = JSON.parse(localStorage.getItem("cart") || "{}")
-
-    arrProducts.map((productSaved) =>{
-            if(productSaved.name === product.name){
-                productSaved.qtd += 1
-            }
-            
-        })
+export function AddToCart( newProduct: Product){
+    let arrProducts: Product[] = []
+    if(localStorage.getItem("cart")){
+       
+        arrProducts = JSON.parse(localStorage.getItem("cart") || "{}")
+ 
+         if(arrProducts.find(product => product.name === newProduct.name)){
+             arrProducts.map((product) =>{
+                 if(product.name === newProduct.name){
+                     product.qtd += 1
+                 }
+                 
+             })
+             localStorage.setItem("cart", JSON.stringify(arrProducts))
+         }else{
+             arrProducts.push(newProduct)
+             localStorage.setItem("cart", JSON.stringify(arrProducts))     
+         }
+    }else{
+        arrProducts.push(newProduct)
         localStorage.setItem("cart", JSON.stringify(arrProducts))
+    }
 }
 export function SubtractFromCart(product:Omit<Product, "desc" | "id" | "section">){
     let arrProducts: Product[]
@@ -64,5 +81,3 @@ export  function RemoveFromCart(product:Omit<Product, "desc" | "id" | "section">
 
     localStorage.setItem("cart", JSON.stringify(saveOnls))
 }
-
-

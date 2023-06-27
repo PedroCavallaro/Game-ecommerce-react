@@ -4,10 +4,11 @@ import Image from 'next/image'
 import { Product } from "@/app/components/Card"
 import {Heart, ShoppingBag, ShoppingCart} from "lucide-react"
 import { useMemo, useState } from "react"
-import { DeleteFromWishList, SaveOnWishList, retrieveUserId } from "@/app/lib/globals"
+import { AddToCart, DeleteFromWishList, SaveOnWishList, retrieveUserId } from "@/app/lib/globals"
+import { Toast } from "@/app/lib/swall"
 
 
-export default function ProductInfo(product: Product) {            
+export default function ProductInfo(product:Product) {            
     
    
     const [clicked, setClicked] = useState<boolean>(false)
@@ -79,9 +80,17 @@ export default function ProductInfo(product: Product) {
                                     <input className="cursor-pointer" type="button" value="Comprar" />
                                 </label>
                                 <label htmlFor="" 
+                                onClick={()=>{
+                                    console.log(product)
+                                    AddToCart(product)
+                                    Toast.fire({
+                                        icon: "success",
+                                        title: "Item adicionado ao carrinho"
+                                    })
+                                }}
                                 className="bg-black cursor-pointer rounded-full flex justify-center items-center gap-3 text-white w-32 h-12
                                                 hover:bg-gray-900 transition-all">
-                                    <ShoppingCart color="#FFF"/>
+                                        <ShoppingCart color="#FFF"/>
                                     <input className="cursor-pointer" type="button" value="Carrinho" />
                                 </label>
                             </div>

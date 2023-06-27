@@ -52,20 +52,22 @@ export default function LoginForm() {
        })} 
 
        className="bg-[#252424] w-[20rem] h-[25rem] flex flex-col justify-center items-center gap-7">
-           <label htmlFor="">
+           <label htmlFor=""
+           className="flex flex-col">
                <p>Nome de Usuário</p>
                <input type="text" {...register("name")}  className="bg-black w-[16rem] h-12 text-white" />
-           </label>    
                {
-                   errors.name?.message && <span className="text-sm text-red-500">{errors.password?.message}</span>
+                   errors.name?.message && <span className="text-sm text-red-500">{errors.name?.message}</span>
                }
-           <label htmlFor="">
+           </label>    
+           <label htmlFor=""
+           className="flex flex-col">
                <p>Senha</p>
                <input type="password" {...register("password")}  className="bg-black h-12 w-[16rem] text-white"  />
-           </label> 
                {
                    errors.password?.message && <span className="text-sm text-red-500">{errors.password?.message}</span>
                }
+           </label> 
           
             <a href="./" id="enter">
                 <input type="submit" value="Entrar" className="bg-white text-black w-[16rem] h-12 cursor-pointer"/>

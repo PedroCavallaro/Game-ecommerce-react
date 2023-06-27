@@ -3,6 +3,7 @@ import{ Heart, ShoppingCart , UserCircle} from "lucide-react"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import { isAuthenticated } from "../lib/globals"
 export default function Nav() {
     function setPage(pageName: string){
         localStorage.setItem("page", JSON.stringify(pageName))
@@ -38,7 +39,7 @@ export default function Nav() {
                         <Heart/>
                     </Link>
                     <Link href="./Cart" 
-                    onClick={()=> setPage("Cart")}
+                    onClick={()=> setPage("Cart") }
                     >
                         <ShoppingCart/>
                     </Link>

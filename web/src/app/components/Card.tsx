@@ -3,6 +3,7 @@ import { ShoppingCart, ArrowRight} from 'lucide-react';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/navigation';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context';
+import { Toast } from '../lib/swall';
 
 export interface Product{
     id:string
@@ -53,16 +54,7 @@ export  function setProductId(id: string, router: AppRouterInstance){
     router.push('/ProductPage')
 }
 export function Card(product: Product) {
-    const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        color: "#000",
-        showConfirmButton: false,
-        background: "#ffff",
-        timer: 1500,
-        timerProgressBar: true,
-      
-      })
+ 
       
     const router = useRouter()
     return(

@@ -2,11 +2,22 @@
 import { Product } from "@/app/components/Card"
 import Image from "next/image"
 import { Trash } from 'lucide-react';
-import { useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { RemoveFromCart, AddToCart, SubtractFromCart } from "../lib/globals";
 
-export default function InfoCard(product:Omit<Product, "desc" | "id" | "section">) {
+
+// interface Handler{
+//   handler: Function
+// }
+
+export default function InfoCard(product:Product) {
 const [count, setCount] = useState(product.qtd)
+
+
+// const remove = (e: Event)=>{
+//   e.preventDefault()
+//   handler()
+// }
 
 useEffect(()=>{
   setCount(count)
@@ -27,7 +38,7 @@ return(
             </div>
         
          <div className="flex flex-col gap-3 justify-center ml-20 w-8 mr-3">
-            <input  className="text-white bg-black cursor-pointer rounded-full p-1 hover:bg-gray-900 "
+            <input className="text-white bg-black cursor-pointer rounded-full p-1 hover:bg-gray-900 "
             onClick={() => {
             
               setCount(count + 1)
