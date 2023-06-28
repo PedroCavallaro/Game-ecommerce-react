@@ -25,7 +25,7 @@ useEffect(()=>{
 },[count])
 let value = product.value * count
 return(
-    <div className="flex p-3 h-[10rem]">
+    <div className="flex p-3 h-[11rem]">
         <div className="flex shadow-[0px_0px_4px_0px_rgba(0,0,0,0.75)] w-[25rem] h-auto">
             <Image src={`/assets/${product.coverUrl}`} alt={product.name}
             width={1000}

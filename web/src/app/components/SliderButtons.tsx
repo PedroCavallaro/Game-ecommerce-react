@@ -8,9 +8,9 @@ function MoveImageRight(sectionId: string){
             
         let previousTranslate:number = 0
         previousTranslate = Number(e.dataset?.translate)
+
         if(previousTranslate !== (-16 * (imgs.length -1)) ){
-            let newTranslate = previousTranslate! -= 16
-        
+            let newTranslate = previousTranslate! -= 16    
     
             e.style.transform = `translate(${newTranslate}rem)`
             e.dataset!.translate = String(newTranslate)
@@ -25,6 +25,7 @@ function MoveImageLeft(sectionId: string){
     imgs.forEach((e)=>{
         let previousTranslate:number = 0
         previousTranslate = Number(e.dataset?.translate)
+
         if(previousTranslate !== 0){
             let newTranslate = previousTranslate! += 16
 
@@ -43,7 +44,7 @@ export default function SliderButtons({arr, sectionId}: SliderProps) {
         onClick={() => MoveImageLeft(sectionId)}
         >{"<-"}</button>
           {
-            arr.map((element, index) =>{
+            arr.map((index) =>{
                 return(
                     <input 
                     className="bg-white h-3 w-3 rounded-full font-extrabold"

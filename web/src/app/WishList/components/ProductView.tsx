@@ -2,7 +2,6 @@ import { Product } from "@/app/components/Card";
 import Image from 'next/image'
 import { useRouter } from "next/navigation";
 import { setProductId } from "../../components/Card";
-import { retrieveUserId } from "@/app/lib/globals";
 import { Heart } from "lucide-react";
 
 

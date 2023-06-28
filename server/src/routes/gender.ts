@@ -20,6 +20,7 @@ export async function genderRoutes(app:FastifyInstance) {
                         name:true,
                         desc:true,
                         value:true,
+                        released:true,
                         mediaProduct:{
                             select:{
                                 fileName:true

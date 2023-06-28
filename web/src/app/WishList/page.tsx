@@ -5,13 +5,12 @@ import { Product } from "../components/Card";
 import { api } from "../lib/api";
 import ProductView from "./components/ProductView";
 import { retrieveUserId } from "../lib/globals";
-import Title from "../components/Title";
 import NoItems from "../components/NoItems";
 
 
 
 interface ApiResponse {
-    product: Pick<Product, "id" | "value" | "name">,
+    product: Pick<Product, "id" | "value" | "name" | "released">,
 
     mediaProduct: [
             {
@@ -42,7 +41,6 @@ export default function WishList() {
 
             return(
              <>
-             <Title/>
              <div className="flex mt-16 justify-center items-center">
                      <div className='flex justify-center  gap-20'>
                          <LeftMenu/>
@@ -56,6 +54,7 @@ export default function WishList() {
                                  return(
                                      <ProductView
                                      section=""
+                                     released={e.product.released}
                                      key={e.product.name}
                                      coverUrl={fileName}
                                      name={e.product.name}
@@ -74,7 +73,6 @@ export default function WishList() {
         }else{
             return (
             <>
-                <Title/>
                 <div className="flex mt-16 justify-center items-center">
                         <div className='flex justify-center  gap-20'>
                             <LeftMenu/>

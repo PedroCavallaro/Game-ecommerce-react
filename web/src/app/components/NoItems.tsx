@@ -13,7 +13,7 @@ export default function NoItems({text, iconId}: NoItemsProps) {
             <p className="text-lg">Não há itens em {text}</p>
             <a href="./"
             className="hover:text-gray-900 text-md"
-            >Vá para a página home e selecione alguns!{" -> "}</a>
+            >Vá para a página inicial e selecione alguns!{" -> "}</a>
         </div>
     )
 };

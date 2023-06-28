@@ -34,7 +34,8 @@ export default function Hero() {
     useEffect(()=>{
         setHero(getProductInfo(count))
     }, [count])
-    console.log(products.toSpliced(0, products.length - 5))
+
+
     const memo = useMemo(async ()=>{
         await api.get("./products")
         .then(function (res:any){
@@ -71,6 +72,7 @@ export default function Hero() {
             <div className="m-0 p-0 flex w-[40rem] h-[25rem] bg-gray-50 z-50">
                 <div className="p-5 flex flex-col gap-10 text-black">
                     <h1 className="h-28">{hero?.name}</h1>
+                    {!hero?.released && <p className="font-extrabold">Pré venda !!!</p>}
                     <p className="h-56 overflow-hidden">{hero?.desc}</p>
                     <button onClick={()=> setProductId(hero!.id, router)}
                     className="bg-black rounded-full flex justify-center items-center text-white w-28

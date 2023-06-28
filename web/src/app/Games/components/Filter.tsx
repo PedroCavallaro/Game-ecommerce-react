@@ -5,13 +5,18 @@ import { Gender, ProductInfo } from "../page"
 interface FilterProps { 
     genders: Gender[],
     products: ProductInfo[],
-    handleFilter: Function
+    handleFilter: Function,
+    handleFilterGenders: Function
 }
-export default function Filter({handleFilter, genders, products}: FilterProps) {
+export default function Filter({handleFilter, genders, handleFilterGenders}: FilterProps) {
    
     const filter = (e: any, search:string) =>{
         e.preventDefault()
         handleFilter(search)
+    }
+    const filterGenders = (e: any, gender:string) =>{
+        e.preventDefault()
+        handleFilterGenders(gender)
     }
     return(
         <>
@@ -36,13 +41,13 @@ export default function Filter({handleFilter, genders, products}: FilterProps) {
                             className="flex gap-2"
                             htmlFor="">
                                 <input 
-                                className="cursor-pointer"
-                                type="checkbox" 
+                                className="cursor-pointer transition-all hover:bg-black  hover:text-white w-[10rem]"
+                                type="button" 
                                 onClick={(e)=>{
-                                    // filter(e, products.filter((e) => e.gender.desc === gender.desc ))
+                                    filterGenders(e, e.currentTarget.value)
                                 }}
                                  name="" id="" value={gender.desc}/>
-                                <h2>{gender.desc}</h2>
+                                
                             </label>
                         )
                     })
@@ -50,11 +55,13 @@ export default function Filter({handleFilter, genders, products}: FilterProps) {
                 <label htmlFor=""
                    className="flex gap-2"
                    >
-                <input type="checkbox" 
-            
+                <input type="button" 
+                className="cursor-pointer transition-all hover:bg-black  hover:text-white w-[10rem]" 
                 name="" 
-                id="" />
-                <h2>Limpar filtros</h2>
+                id="" 
+                onClick={(e)=> filterGenders(e, "")}
+                value="Limpar filtros"
+                />
                 </label>
             </div>
         </>

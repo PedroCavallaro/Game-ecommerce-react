@@ -2,7 +2,6 @@
 import {useEffect, useMemo, useState} from "react"
 import { api } from "../lib/api"
 import { Card } from "../components/Card"
-import Title from "../components/Title"
 import Filter from "./components/Filter"
 import SliderButtons from "../components/SliderButtons"
 
@@ -17,6 +16,7 @@ export interface ProductInfo{
         desc: string,
         name: string,
         value: number,
+        released: boolean,
         mediaProduct: [
             {
                 fileName: string
@@ -30,9 +30,14 @@ export default function Games() {
     const [products, setProducts] = useState<ProductInfo[]> ([])    
 
     const [search, setSearch ] = useState<string>('') 
+    const [genderSeach, setGenderSeach] = useState<string>('')
 
     function filterProductsHandle(search: string){
         setSearch(search)
+    }
+    
+    function filterGendersHandle(search: string){
+        setGenderSeach(search)
     }
     
     const memo = useMemo( async ()=>{
@@ -49,15 +54,15 @@ export default function Games() {
     },[])
     
     const lowerSearch = search.toLowerCase()
+    const filteredGenders = genders.filter((e) => e.desc.includes(genderSeach))
     const filteredProducts = products.filter((e) => e.product.name.toLowerCase().includes(lowerSearch))
 
     return(
         <>
-        <Title/>
         <div className="flex pl-2">
             <div className="mt-[5rem] h-[30rem] p-5 bg-white">
                 <Filter 
-
+                handleFilterGenders={filterGendersHandle}
                 handleFilter={filterProductsHandle}
                 products={products}
                 genders={genders}/>
@@ -66,7 +71,7 @@ export default function Games() {
 
         <div className="flex w-full flex-col overflow-hidden ml-4">
             {
-                genders.map((gender, index) =>{
+                filteredGenders.map((gender, index) =>{
                     return(
                         <>
                         
@@ -81,6 +86,7 @@ export default function Games() {
                                             section={`section${index}`}
                                             key={Math.random()}
                                             id={product.product.id}
+                                            released={product.product.released}
                                             name={product.product.name}
                                             qtd={1}
                                             value={product.product.value}

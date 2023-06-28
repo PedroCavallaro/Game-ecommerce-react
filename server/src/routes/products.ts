@@ -21,6 +21,7 @@ export async function productRoutes(app: FastifyInstance) {
                 name: product.name,
                 desc: product.desc,
                 value: product.value,
+                released: product.released,
                 coverUrl: product.mediaProduct.map((media)=>{
                     return media.fileName
                 })
@@ -37,6 +38,7 @@ export async function productRoutes(app: FastifyInstance) {
                         name: true,
                         desc:true,
                         value:true,
+                        released:true,
                         mediaProduct:{
                             select:{
                                 fileName:true
@@ -79,6 +81,7 @@ export async function productRoutes(app: FastifyInstance) {
                 name: product.name,
                 desc: product.desc,
                 value: product.value,
+                released: product.released,
                 coverUrl: product.mediaProduct.map((media)=>{
                     return media.fileName
                 })

@@ -24,6 +24,7 @@ model Product {
   amount           Int
   value            Float
   desc             String
+  released         Boolean            @default(true)
   mediaProduct     mediaProduct[]
   BuyItens         BuyItens[]
   ProductAndGender ProductAndGender[]

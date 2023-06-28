@@ -1,11 +1,9 @@
 import RegisterForm from "../components/Register";
-import Title from "../components/Title";
 
 export default function Register() {
 
     return(
         <>
-        <Title/>
         <div className="w-screen flex justify-center h-[40rem] items-center bg-black overflow-hidden gap-14">
             <div className="">
                 

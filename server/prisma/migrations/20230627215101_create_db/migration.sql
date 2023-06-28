@@ -11,7 +11,8 @@ CREATE TABLE "Product" (
     "name" TEXT NOT NULL,
     "amount" INTEGER NOT NULL,
     "value" REAL NOT NULL,
-    "desc" TEXT NOT NULL
+    "desc" TEXT NOT NULL,
+    "released" BOOLEAN NOT NULL DEFAULT true
 );
 
 -- CreateTable

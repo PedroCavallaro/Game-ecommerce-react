@@ -12,7 +12,8 @@ export interface Product{
     value: number,
     coverUrl: string,
     qtd: number,
-    section: string
+    section: string,
+    released: boolean
 }
 export const saveProduct = (product : Product)=>{
     let arrProducts : Product[] = [] 
@@ -23,7 +24,8 @@ export const saveProduct = (product : Product)=>{
         desc:product.desc,
         value: product.value,
         qtd: product.qtd,
-        section: product.section
+        section: product.section,
+        released: product.released
     }   
 
     if(localStorage.getItem("cart")){
@@ -72,12 +74,10 @@ export function Card(product: Product) {
                            />
 
                     </div>
-                        <div>
-                            <h2>{product.name}</h2>
-                        </div>
-               </div>
+                       <h2>{product.name}</h2>
+                </div>
                 <div className='flex flex-col gap-5'>
-                    <div className='flex justify-center items-center'>
+                    <div className='flex flex-col justify-center items-center'>
                         <ShoppingCart onClick={() =>{ 
                             Toast.fire({
                                 icon: "success",
@@ -85,6 +85,7 @@ export function Card(product: Product) {
                             })
                             saveProduct(product)} 
                             } className='cursor-pointer'/>
+                            {!product.released && <p className='font-extrabold'>Pré-venda</p>}
                     </div>
                     <div className='flex justify-between p-2'>
                         <div>
