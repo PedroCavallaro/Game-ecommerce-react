@@ -11,7 +11,7 @@ export default function LeftSection() {
     },[])
     return(
         <div className="text-black flex justify-center items-center flex-col">
-            <h2 className="text-3xl">Itens</h2>
+            <h2 className="text-2xl p-2">Itens</h2>
             {
                 products.map((product) =>{
                     return(

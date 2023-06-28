@@ -62,7 +62,7 @@ export function Card(product: Product) {
     return(
         <div className={ `bg-white text-black flex flex-col gap-3 mt-5 ${product.section}` } 
         data-translate='0' >
-               <div className='flex justify-center items-center flex-col gap-2 h-30 overflow-hidden  w-[15rem]'>
+               <div className='flex justify-center items-center flex-col gap-2 h-[20rem] overflow-hidden  w-[15rem]'>
                     <div className='h-[17rem] mt-3 w-[13rem] overflow-hidden rounded-[0.5rem]'>
                         <Image src={`/assets/${product.coverUrl}`}
                             width={500}
@@ -78,6 +78,7 @@ export function Card(product: Product) {
                 </div>
                 <div className='flex flex-col gap-5'>
                     <div className='flex flex-col justify-center items-center'>
+                        
                         <ShoppingCart onClick={() =>{ 
                             Toast.fire({
                                 icon: "success",
@@ -85,7 +86,8 @@ export function Card(product: Product) {
                             })
                             saveProduct(product)} 
                             } className='cursor-pointer'/>
-                            {!product.released && <p className='font-extrabold'>Pré-venda</p>}
+                            
+                        {!product.released && <p className='font-extrabold'>Pré-venda</p>}
                     </div>
                     <div className='flex justify-between p-2'>
                         <div>

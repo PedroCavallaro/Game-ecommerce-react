@@ -1,4 +1,6 @@
 import LeftSection from "./components/LeftSection";
+import MiddleSection from "./components/MiddleSection";
+import RightSection from "./components/RightSection";
 import Section from "./components/Section";
 
 export default function Payment() {
@@ -8,10 +10,10 @@ export default function Payment() {
            <LeftSection/>
         </Section> 
         <Section>
-            <p className="text-black">oi</p>
+            <MiddleSection/>
         </Section> 
         <Section>
-            <p className="text-black">oi</p>
+            <RightSection/>       
         </Section> 
     </div>
     )
