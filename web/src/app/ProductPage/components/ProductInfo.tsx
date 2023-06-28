@@ -6,10 +6,11 @@ import {Heart, ShoppingBag, ShoppingCart} from "lucide-react"
 import { useMemo, useState } from "react"
 import { AddToCart, DeleteFromWishList, SaveOnWishList, retrieveUserId } from "@/app/lib/globals"
 import { Toast } from "@/app/lib/swall"
+import { useRouter } from "next/navigation" 
 
 
 export default function ProductInfo(product:Product) {            
-    
+    const router = useRouter()
    
     const [clicked, setClicked] = useState<boolean>(false)
 
@@ -74,6 +75,7 @@ export default function ProductInfo(product:Product) {
                             </div>
                             <div className="flex gap-8">
                                 <label htmlFor="" 
+                                onClick={() => router.push("./Payment")}
                                 className="bg-black rounded-full flex justify-center items-center gap-3 text-white w-32 h-12
                                     hover:bg-gray-900 cursor-pointer transition-all" >
                                      <ShoppingBag />
