@@ -26,6 +26,7 @@ interface ApiResponse {
 export default function WishList() {
         const [wishList, setWishList] = useState<ApiResponse[]>([])
         const [hasItems, setHasItems] = useState<boolean>(true)
+        
         const memo = useMemo(async ()=>{
                 const url = new URLSearchParams(window.location.search)
                 await api.get(`./wishList/${retrieveUserId()}`)

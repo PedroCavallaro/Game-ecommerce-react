@@ -2,11 +2,12 @@
 import { Product } from "@/app/components/Card";
 import InfoCard from "./InfoCard";
 import NoItems from "./NoItems";
+import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 
 
 export default function RightMenu() {
-    
+    const router = useRouter()
     function handleRemoveFromCart(){
         setArrProducts(JSON.parse(localStorage.getItem("cart") || "{}"))
     }
@@ -23,7 +24,11 @@ export default function RightMenu() {
 
         return (
             <div className="bg-white w-[50rem] h-[30rem] overflow-scroll overflow-x-hidden" >
-                
+                <div className=" relative ">
+                    <input value={"Finalizar Compra"}
+                    onClick={() => router.push("./Payment")}
+                    type="submit" className="text-white absolute cursor-pointer rounded-full top-0 right-2 mt-2 p-2 bg-black hover:bg-gray-900"/>
+                </div>
                 {
                         arrProducts.map((product) =>{
                            if(product.qtd !== 0){
@@ -44,9 +49,7 @@ export default function RightMenu() {
                            }
                         })
                     }
-                <div className="relative  ">
-                    <input value={"Finalizar Compra"} type="submit" className="text-white absolute cursor-pointer rounded-full -top-[20rem] right-2 mt-2 p-2 bg-black hover:bg-gray-900"/>
-                </div>
+                
             </div>  
            
         )

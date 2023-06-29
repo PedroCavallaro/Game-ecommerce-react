@@ -61,7 +61,7 @@ export default function RightSection() {
         <>
         <h2 className="text-black text-center text-2xl p-2">Informações para entrega</h2> 
         <form onSubmit={handleSubmit((data)=> console.log(data))}
-            onChange={(data) => console.log(errors)}
+          
             className="flex flex-col justify-start ml-9"
         > 
       
@@ -81,7 +81,7 @@ export default function RightSection() {
                 }}
 
                 id="Cep"
-                className="text-white bg-black w-[15rem] h-[2.5rem] p-2"
+                className="text-white bg-black w-[6rem] h-[2.5rem] p-2"
                 type="text"
                 placeholder="Cep"
                 required
@@ -141,7 +141,7 @@ export default function RightSection() {
                 <Input
                 {...register("uf")}
                 id="uf"
-                className="text-white bg-black w-[5rem] h-[2.5rem] p-2"
+                className="text-white bg-black w-[3rem] h-[2.5rem] p-2"
                 type="text"
                 placeholder="UF"
                 required
