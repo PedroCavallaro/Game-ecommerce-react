@@ -8,8 +8,9 @@ import { useMemo, useState } from "react";
 
 export default function RightMenu() {
     const router = useRouter()
-    function handleRemoveFromCart(){
-        setArrProducts(JSON.parse(localStorage.getItem("cart") || "{}"))
+
+    function handleRemoveFromCart(ProductsArr: Product[]){
+        setArrProducts(ProductsArr)
     }
     
     const [arrProducts, setArrProducts] = useState<Product[]>([])
@@ -33,16 +34,17 @@ export default function RightMenu() {
                         arrProducts.map((product) =>{
                            if(product.qtd !== 0){
                                return(
-                                   <div  key={product.id} className="shadow">
+                                   <div key={product.id} className="shadow">
                                        <InfoCard
-                                       released={product.released}
-                                       desc={product.desc}
-                                       section=""
-                                       id={product.id}
-                                       coverUrl={product.coverUrl}
-                                       name={product.name}
-                                       qtd={product.qtd}
-                                       value={product.value}
+                                        handlerCart={handleRemoveFromCart}
+                                        released={product.released}
+                                        desc={product.desc}
+                                        section=""
+                                        id={product.id}
+                                        coverUrl={product.coverUrl}
+                                        name={product.name}
+                                        qtd={product.qtd}
+                                        value={product.value}
                                    />
                                     </div>
                                )
@@ -56,7 +58,7 @@ export default function RightMenu() {
         }else{
             return(
                 <div className="bg-white flex justify-center w-[50rem] h-[30rem] overflow-scroll overflow-x-hidden" >
-                    <NoItems iconId={Number(1)} text={"em seu carrinho"}/>
+                    <NoItems iconId={Number(0)} text={"em seu carrinho"}/>
                 </div>
             )
     }

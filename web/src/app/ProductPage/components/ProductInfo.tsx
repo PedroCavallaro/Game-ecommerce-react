@@ -68,14 +68,21 @@ export default function ProductInfo(product:Product) {
                                 }}
                                 >
                                         {
-                                            clicked? <Heart fill="#000" color="#000"/>: <Heart color="#000"/> 
+                                            clicked? <Heart  fill="#000" color="#000"/>: <Heart onClick={() => Toast.fire({
+                                                icon: "success",
+                                                title: "Item adicionado a sua lista de desejos",
+                                            })} color="#000"/> 
                                         }
                                 </button>
                             <p className="text-black text-lg">{product.desc}</p>
                             </div>
                             <div className="flex gap-8">
                                 <label htmlFor="" 
-                                onClick={() => router.push("./Payment")}
+                                onClick={() => {
+                                    
+                                    AddToCart(product)
+                                    router.push("./Payment")
+                                }}
                                 className="bg-black rounded-full flex justify-center items-center gap-3 text-white w-32 h-12
                                     hover:bg-gray-900 cursor-pointer transition-all" >
                                      <ShoppingBag />
@@ -83,7 +90,6 @@ export default function ProductInfo(product:Product) {
                                 </label>
                                 <label htmlFor="" 
                                 onClick={()=>{
-                                    console.log(product)
                                     AddToCart(product)
                                     Toast.fire({
                                         icon: "success",

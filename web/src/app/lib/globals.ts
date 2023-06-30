@@ -75,9 +75,14 @@ export function SubtractFromCart(product:Omit<Product, "desc" | "id" | "section"
 export  function RemoveFromCart(product:Omit<Product, "desc" | "id" | "section">){
     let arrProducts: Product[]
     let saveOnls: Product[] = []
+    
     arrProducts = JSON.parse(localStorage.getItem("cart") || "{}")  
 
     saveOnls = arrProducts.filter((e)=> e.name !== product.name)
-
+ 
     localStorage.setItem("cart", JSON.stringify(saveOnls))
+}
+
+export function dateConverter(){
+    
 }

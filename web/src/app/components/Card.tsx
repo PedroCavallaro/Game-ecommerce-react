@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import { ShoppingCart, ArrowRight} from 'lucide-react';
-import Swal from 'sweetalert2';
 import { useRouter } from 'next/navigation';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context';
 import { Toast } from '../lib/swall';

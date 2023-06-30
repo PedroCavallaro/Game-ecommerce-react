@@ -11,7 +11,6 @@ export default function ProductSection(){
         await api.get("./products")
         .then(function (res:any){
                 setProducts(res.data)
-                console.log(res.data)
         })
     }, [])
    const preSale = products.filter((e)=> !e.released)
@@ -24,7 +23,6 @@ export default function ProductSection(){
             <div className='flex justify-start gap-5'>
             {
                 products.map((e: Product) =>{
-                    console.log(e)
                     if(e.released === true){
                         return (
                             <Card 

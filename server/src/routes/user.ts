@@ -26,6 +26,7 @@ export async function userRoutes(app: FastifyInstance) {
            },
            select: {
                 id:true,
+                name:true,
                 Buys: {
                     select:{
                         totalAmount: true,

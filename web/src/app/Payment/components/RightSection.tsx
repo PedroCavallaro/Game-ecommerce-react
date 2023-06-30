@@ -5,8 +5,11 @@ import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import Label from "../../components/Label"
-import { api } from "@/app/lib/api"
 import axios from "axios"
+import { Product } from "@/app/components/Card"
+import { retrieveUserId } from "@/app/lib/globals"
+import { api } from "@/app/lib/api"
+import { Toast } from "@/app/lib/swall"
 
 
 const schema  = z.object({
@@ -28,8 +31,8 @@ const schema  = z.object({
     }),
     city: z.string().min(4,{
         message:"O nome da cidade precisa ser maior"
-
-    })
+    }),
+    number: z.coerce.number().min(2)    
 })
 
 async function getAddressInfo(data: any){
@@ -42,6 +45,25 @@ async function getAddressInfo(data: any){
     }
 }
 
+async function SendInfo(){
+    let productsArray: Product[] = []
+
+    productsArray = JSON.parse(localStorage.getItem("cart") || "{}")
+
+
+    let productsId: string[] = []
+    let sum: number = 0
+    productsArray.map((e: Product)=>{
+        productsId.push(e.id)
+        sum += (e.value * e.qtd)
+    })
+    await api.post("/buys",{
+        id: retrieveUserId(),
+        products: productsId,
+        total: sum
+    })
+
+}
 type FormData = z.infer<typeof schema>
 
 
@@ -60,7 +82,33 @@ export default function RightSection() {
     return(
         <>
         <h2 className="text-black text-center text-2xl p-2">Informações para entrega</h2> 
-        <form onSubmit={handleSubmit((data)=> console.log(data))}
+        <form onSubmit={handleSubmit(async ()=> {    
+            let arr: any[] = []
+            arr = JSON.parse(localStorage.getItem("cart") || "{}")
+           
+            if(!arr.length){
+            Toast.fire({
+                icon:"error",
+                title:"Não há itens em seu carrinho"
+            })
+            return false
+               
+           }
+           else if(document.querySelectorAll("input[type='radio']:checked").length === 0){
+            Toast.fire({
+                icon:"error",
+                title:"Selecione o método de pagamento"
+                
+            })
+            return false
+
+           }
+
+            SendInfo()
+            localStorage.removeItem("cart")  
+            router.push("/Buys")          
+         
+        })}
           
             className="flex flex-col justify-start ml-9"
         > 
@@ -118,7 +166,7 @@ export default function RightSection() {
                 placeholder="Cidade"
                 required
                 />  
-                {errors?.address?.message && <span className="text-red-950">{ errors?.address?.message}</span>}
+                {errors?.city?.message && <span className="text-red-950">{ errors?.city?.message}</span>}
             </Label>
             <Label 
             htmlFor="bairro"
@@ -135,6 +183,21 @@ export default function RightSection() {
                 {errors?.neighborhood?.message && <span className="text-red-950">{ errors?.neighborhood?.message}</span>}
             </Label>
             <Label 
+            htmlFor="number"
+            title="Número"
+            >
+                <Input
+                {...register("number")}
+                id="number"
+                className="text-white bg-black w-[5rem] h-[2.5rem] p-2"
+                type="text"
+                placeholder="Número"
+                required
+               
+                />  
+                {errors?.number?.message && <span className="text-red-950">{ errors?.number?.message}</span>}
+            </Label>
+            <Label 
             htmlFor="uf"
             title="Estado"
             >
@@ -149,11 +212,12 @@ export default function RightSection() {
                 />  
                 {errors?.uf?.message && <span className="text-red-950">{ errors?.uf?.message}</span>}
             </Label>
+            
            </div> 
-           <div className="relative">
+           <div className="relative ">
                 <Input
-                className="text-white bg-black rounded-full cursor-pointer h-[2rem] w-[10rem] relative left-60 hover:bg-gray-900 transition-all"
-                value="Enviar"
+                className="text-white bg-black rounded-full cursor-pointer h-[2.5rem] w-[12rem] mt-2 relative left-56 hover:bg-gray-900 transition-all"
+                value="Finalizar Compra"
                 type="submit"
 
                 />

@@ -53,15 +53,16 @@ export default function WishList() {
                                  let { fileName } = e.product.mediaProduct[0]
      
                                  return(
-                                     <ProductView
-                                     section=""
-                                     released={e.product.released}
-                                     key={e.product.name}
-                                     coverUrl={fileName}
-                                     name={e.product.name}
-                                     value={e.product.value}
-                                     id={e.product.id}
-                                     />
+                                    <div  key={e.product.name} className="shadow">
+                                        <ProductView
+                                        section=""
+                                        released={e.product.released}
+                                        coverUrl={fileName}
+                                        name={e.product.name}
+                                        value={e.product.value}
+                                        id={e.product.id}
+                                        />
+                                    </div>
                                  )
                              })
                          }     
@@ -78,7 +79,7 @@ export default function WishList() {
                         <div className='flex justify-center  gap-20'>
                             <LeftMenu/>
                             <div className="bg-white w-[50rem]  flex items-center justify-center h-[30rem] overflow-scroll overflow-x-hidden" >
-                                <NoItems iconId={2} text="em sua lista de desejos"/>
+                                <NoItems iconId={1} text="em sua lista de desejos"/>
                             </div>
                     </div>
                 </div>

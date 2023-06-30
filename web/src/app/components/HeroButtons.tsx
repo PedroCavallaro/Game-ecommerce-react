@@ -26,7 +26,6 @@ export default function HeroButtons(products: Product[], [count, setCount]: any)
                         MoveImageLeft(count)
                         setCount(count -= 1)
                     }
-                    console.log(count)
                 }
             }}>{"<-"}</button>
             {
@@ -50,7 +49,6 @@ export default function HeroButtons(products: Product[], [count, setCount]: any)
                         moveImageRight(count)
                         setCount(count += 1)
                     }
-                    console.log(count)
                 }
             }}>{"->"}</button>
         

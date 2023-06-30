@@ -4,6 +4,7 @@ import { productRoutes } from "./routes/products";
 import { userRoutes } from "./routes/user";
 import { wishListRoutes } from "./routes/wishList";
 import { genderRoutes } from "./routes/gender";
+import { buyRoutes } from "./routes/buys";
 
 const app = fastify({
     logger: true
@@ -23,3 +24,6 @@ app.register(productRoutes)
 app.register(userRoutes)
 app.register(wishListRoutes)
 app.register(genderRoutes)
+app.register(buyRoutes)
+
+
