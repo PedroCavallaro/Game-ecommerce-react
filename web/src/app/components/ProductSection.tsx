@@ -3,20 +3,24 @@ import { api } from '../lib/api';
 import {Card, Product } from '../components/Card';
 import { useState, useMemo } from 'react';
 import SliderButtons from './SliderButtons';
+import Loading from './Loading';
 
 export default function ProductSection(){
     const [products, setProducts] = useState<Product[]>([])
-    
+    const [loader, setLoader] = useState<boolean>(false)
+
     const memo = useMemo(async ()=>{
         await api.get("./products")
         .then(function (res:any){
                 setProducts(res.data)
         })
+        setLoader(true)
     }, [])
    const preSale = products.filter((e)=> !e.released)
     return(
             
         <div className=' overflow-hidden'>
+            {!loader && <Loading/> }           
             <h2
                 className='text-2xl'
                 >Em estoque</h2>
@@ -30,7 +34,7 @@ export default function ProductSection(){
                             qtd={1} 
                             released={e.released}
                             id={e.id} 
-                            key={e.name} 
+                            key={e.name.toString()} 
                             name={e.name}
                             desc={e.desc}
                             value={e.value}

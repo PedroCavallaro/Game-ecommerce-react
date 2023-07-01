@@ -46,6 +46,7 @@ export default function LeftMenu() {
     })
     return(
         <div className="w-80  bg-white flex  flex-col gap-10 overflow-hidden">
+           
             {
                 arrInfo.map((button) =>{
                     return (

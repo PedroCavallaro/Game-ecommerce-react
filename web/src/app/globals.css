@@ -28,6 +28,35 @@
   background-color: black;
   border-radius: 100px;
 }
+
+@keyframes loading {
+  0%{
+    transform:  scaleY(0.4) ;
+  }50%{
+    transform: scaleY(1);
+  }
+  70%{
+    transform: scaleY(0.4);
+  }
+
+  100%{
+    transform:  scaleY(0.4);
+  }
+}
+
+.load{
+  animation: loading 1s ease-in-out infinite;
+}
+.line1{
+  animation-delay: -1.2s;
+}
+.line2{
+  animation-delay: -1.1s;
+}
+.line3{
+  animation-delay: -0.9s
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(

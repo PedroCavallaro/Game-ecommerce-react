@@ -1,4 +1,5 @@
 "use client"
+import Loading from "@/app/components/Loading"
 import NoItems from "@/app/components/NoItems"
 import { api } from "@/app/lib/api"
 import { retrieveUserId } from "@/app/lib/globals"
@@ -21,15 +22,17 @@ interface ApiBuysResponse{
 export default function BuyInfo() {
 
     const [buys, setBuys] = useState<ApiBuysResponse[] | null>(null)
-
+    const [loader, setLoader] = useState<boolean>(false)
     const memo = useMemo(async ()=>{
         await api.get(`/buys/${retrieveUserId()}`)
                 .then((res) => setBuys(res.data))
+                setLoader(true)
             
     }, [])
 
     return(
-        <> 
+        <>
+        {!loader && <Loading/>} 
         {
             buys?.length ? ( 
                 <table

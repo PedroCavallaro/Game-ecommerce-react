@@ -105,7 +105,8 @@ export default function RightSection() {
            }
 
             SendInfo()
-            localStorage.removeItem("cart")  
+            localStorage.removeItem("cart") 
+            localStorage.setItem("page", JSON.stringify("Buys")) 
             router.push("/Buys")          
          
         })}

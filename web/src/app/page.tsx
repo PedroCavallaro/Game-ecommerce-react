@@ -5,6 +5,7 @@ import ProductSection from './components/ProductSection'
 export default function Home() {
 	return (
     <>
+      
       <main className="flex flex-col relative overflow-x-hidden ">
           
           <Hero/>

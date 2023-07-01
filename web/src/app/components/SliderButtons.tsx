@@ -46,9 +46,11 @@ export default function SliderButtons({arr, sectionId}: SliderProps) {
           {
             arr.map((index) =>{
                 return(
-                    <input 
-                    className="bg-white h-3 w-3 rounded-full font-extrabold"
-                    type="button" value="" key={index} />
+                    <>
+                        <input 
+                        className="bg-white h-3 w-3 rounded-full font-extrabold"
+                        type="button" value="" key={index.toString()} />
+                    </>
                 )
             })
           }      

@@ -6,6 +6,7 @@ import { api } from "../lib/api";
 import ProductView from "./components/ProductView";
 import { retrieveUserId } from "../lib/globals";
 import NoItems from "../components/NoItems";
+import Loading from "../components/Loading";
 
 
 
@@ -26,7 +27,8 @@ interface ApiResponse {
 export default function WishList() {
         const [wishList, setWishList] = useState<ApiResponse[]>([])
         const [hasItems, setHasItems] = useState<boolean>(true)
-        
+        const [loader, setLoader] = useState<boolean>(false)
+
         const memo = useMemo(async ()=>{
                 const url = new URLSearchParams(window.location.search)
                 await api.get(`./wishList/${retrieveUserId()}`)
@@ -36,12 +38,14 @@ export default function WishList() {
                 .catch(function(err){
                     setHasItems(false)                 
                 })
+                setLoader(true)
         }, [])
 
         if(hasItems){
 
             return(
              <>
+             {!loader && <Loading/>}
              <div className="flex mt-16 justify-center items-center">
                      <div className='flex justify-center  gap-20'>
                          <LeftMenu/>
